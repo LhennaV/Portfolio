@@ -25,6 +25,65 @@
         }
     </script>
     <link rel="stylesheet" href="css/style.css">
+
+    <!-- Firebase SDK -->
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+        import { getFirestore, collection, addDoc, query, orderBy, limit, onSnapshot } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyA1atCU2O4YL8SiGrxkNbg_GO2bZcNiVNw",
+            authDomain: "lhenna-portfolio.firebaseapp.com",
+            projectId: "lhenna-portfolio",
+            storageBucket: "lhenna-portfolio.firebasestorage.app",
+            messagingSenderId: "75781523382",
+            appId: "1:75781523382:web:33fb2db8f9e2ccc474a317",
+            measurementId: "G-1PLGY06SNM"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // Make functions globally available
+        window.guestbookDB = {
+            // Add a new guestbook entry
+            async addEntry(name, message) {
+                try {
+                    const docRef = await addDoc(collection(db, 'guestbook'), {
+                        name: name,
+                        message: message,
+                        timestamp: new Date()
+                    });
+                    return { success: true, id: docRef.id };
+                } catch (error) {
+                    console.error('Error adding entry:', error);
+                    return { success: false, error: error.message };
+                }
+            },
+
+            // Listen to guestbook entries
+            listenToEntries(callback) {
+                const q = query(
+                    collection(db, 'guestbook'),
+                    orderBy('timestamp', 'desc'),
+                    limit(10)
+                );
+
+                return onSnapshot(q, (snapshot) => {
+                    const entries = [];
+                    snapshot.forEach((doc) => {
+                        entries.push({
+                            id: doc.id,
+                            ...doc.data()
+                        });
+                    });
+                    callback(entries);
+                });
+            }
+        };
+    </script>
 </head>
 <body class="font-mono bg-[#F7F5FF] overflow-hidden w-screen h-screen">
     <div class="relative w-full h-screen bg-[#F7F5FF] overflow-hidden">
@@ -273,102 +332,63 @@
                         </div>
 
                         <!-- Polaroid 1: Selfie - Left -->
-                        <div class="polaroid absolute top-[20px] left-[5%] bg-white p-4 pixel-shadow rotate-[-6deg] hover:rotate-[-2deg] transition-transform duration-100 cursor-pointer z-10">
-                            <div class="w-[200px] h-[200px] bg-[#EDE9FE] flex items-center justify-center pixel-border-thin overflow-hidden">
-                                <img src="assets/images/my picture.png" alt="Lhenna" class="w-full h-full object-cover">
+                        <div class="polaroid-section flex items-start gap-8 mb-16 md:absolute md:top-[20px] md:left-[5%]">
+                            <div class="polaroid bg-white p-4 pixel-shadow rotate-[-6deg] hover:rotate-[-2deg] transition-transform duration-100 cursor-pointer z-10 flex-shrink-0">
+                                <div class="w-[200px] h-[200px] bg-[#EDE9FE] flex items-center justify-center pixel-border-thin overflow-hidden">
+                                    <img src="assets/images/my picture.png" alt="Lhenna" class="w-full h-full object-cover">
+                                </div>
+                                <p class="font-mono text-center mt-3 text-gray-700 text-lg">that's me! 👋</p>
                             </div>
-                            <p class="font-mono text-center mt-3 text-gray-700 text-lg">that's me! 👋</p>
-                        </div>
-                        <div class="absolute top-[20px] left-[33%] max-w-[550px]">
-                            <p class="font-mono text-lg text-purple-500 mb-1">chapter 01</p>
-                            <h3 class="font-mono text-2xl text-gray-800 font-bold mb-3">who i am</h3>
-                            <p class="font-mono text-lg text-gray-700 leading-relaxed">
-                                hi, i'm lhenna. a ui/ux designer who also dabbles in frontend dev. i got into design because i've always cared about how things feel, not just how they look. that tiny moment when a user just gets an interface without thinking? that's what i'm chasing every single time. i'm currently working on real projects, learning as i go, and slowly building a body of work i'm proud of. ✦
-                            </p>
+                            <div class="max-w-[550px]">
+                                <p class="font-mono text-lg text-purple-500 mb-1">chapter 01</p>
+                                <h3 class="font-mono text-2xl text-gray-800 font-bold mb-3">who i am</h3>
+                                <p class="font-mono text-lg text-gray-700 leading-relaxed">
+                                    hi, i'm lhenna. a ui/ux designer who also dabbles in frontend dev. i got into design because i've always cared about how things feel, not just how they look. that tiny moment when a user just gets an interface without thinking? that's what i'm chasing every single time. i'm currently working on real projects, learning as i go, and slowly building a body of work i'm proud of. ✦
+                                </p>
+                            </div>
                         </div>
 
                         <!-- Polaroid 2: Stormi - Right -->
-                        <div class="absolute top-[460px] left-[5%] max-w-[550px]">
-                            <p class="font-mono text-lg text-purple-500 mb-1">chapter 02</p>
-                            <h3 class="font-mono text-2xl text-gray-800 font-bold mb-3">the real me</h3>
-                            <p class="font-mono text-lg text-gray-700 leading-relaxed">
-                                outside of work, i'm probably gaming, deep in some aesthetic rabbit hole, or being judged by my cat stormi. she's a tortoiseshell and she is, without question, the most important person in my life. i like cozy things, purple everything, and interfaces that feel like a warm hug. i'm a little magastos, a little chaotic, and very much a work in progress. and i think that's okay. oh, and i sleep. a lot. i've been a certified sleepy kid since birth. the kind who can fall asleep anywhere, anytime, no questions asked. 🐱
-                            </p>
-                        </div>
-                        <div class="polaroid absolute top-[460px] right-[5%] bg-white p-4 pixel-shadow rotate-[3deg] hover:rotate-[1deg] transition-transform duration-100 cursor-pointer z-10">
-                            <div class="w-[200px] h-[200px] bg-[#EDE9FE] flex items-center justify-center pixel-border-thin overflow-hidden">
-                                <img src="assets/images/pic of stormi.png" alt="Stormi" class="w-full h-full object-cover">
+                        <div class="polaroid-section flex flex-row-reverse items-start gap-8 mb-16 md:absolute md:top-[460px] md:left-[5%]">
+                            <div class="polaroid bg-white p-4 pixel-shadow rotate-[3deg] hover:rotate-[1deg] transition-transform duration-100 cursor-pointer z-10 flex-shrink-0">
+                                <div class="w-[200px] h-[200px] bg-[#EDE9FE] flex items-center justify-center pixel-border-thin overflow-hidden">
+                                    <img src="assets/images/pic of stormi.png" alt="Stormi" class="w-full h-full object-cover">
+                                </div>
+                                <p class="font-mono text-center mt-3 text-gray-700 text-lg">my daughter 🐾</p>
                             </div>
-                            <p class="font-mono text-center mt-3 text-gray-700 text-lg">my daughter 🐾</p>
+                            <div class="max-w-[550px]">
+                                <p class="font-mono text-lg text-purple-500 mb-1">chapter 02</p>
+                                <h3 class="font-mono text-2xl text-gray-800 font-bold mb-3">the real me</h3>
+                                <p class="font-mono text-lg text-gray-700 leading-relaxed">
+                                    outside of work, i'm probably gaming, deep in some aesthetic rabbit hole, or being judged by my cat stormi. she's a tortoiseshell and she is, without question, the most important person in my life. i like cozy things, purple everything, and interfaces that feel like a warm hug. i'm a little magastos, a little chaotic, and very much a work in progress. and i think that's okay. oh, and i sleep. a lot. i've been a certified sleepy kid since birth. the kind who can fall asleep anywhere, anytime, no questions asked. 🐱
+                                </p>
+                            </div>
                         </div>
 
                         <!-- Polaroid 3: Minecraft - Left -->
-                        <div class="polaroid absolute top-[900px] left-[5%] bg-white p-4 pixel-shadow rotate-[-4deg] hover:rotate-0 transition-transform duration-100 cursor-pointer z-10">
-                            <div class="w-[200px] h-[200px] bg-[#EDE9FE] flex items-center justify-center pixel-border-thin overflow-hidden">
-                                <img src="assets/images/minecraft.png" alt="Minecraft" class="w-full h-full object-cover">
+                        <div class="polaroid-section flex items-start gap-8 mb-16 md:absolute md:top-[900px] md:left-[5%]">
+                            <div class="polaroid bg-white p-4 pixel-shadow rotate-[-4deg] hover:rotate-0 transition-transform duration-100 cursor-pointer z-10 flex-shrink-0">
+                                <div class="w-[200px] h-[200px] bg-[#EDE9FE] flex items-center justify-center pixel-border-thin overflow-hidden">
+                                    <img src="assets/images/minecraft.png" alt="Minecraft" class="w-full h-full object-cover">
+                                </div>
+                                <p class="font-mono text-center mt-3 text-gray-700 text-lg">my happy place ✦</p>
                             </div>
-                            <p class="font-mono text-center mt-3 text-gray-700 text-lg">my happy place ✦</p>
-                        </div>
-                        <div class="absolute top-[900px] left-[33%] max-w-[550px]">
-                            <p class="font-mono text-lg text-purple-500 mb-1">chapter 03</p>
-                            <h3 class="font-mono text-2xl text-gray-800 font-bold mb-3">where i'm going</h3>
-                            <p class="font-mono text-lg text-gray-700 leading-relaxed">
-                                i used to paint. back when life felt lighter and time moved slower. i haven't picked up a brush in a while, but that same part of me found a new home in minecraft. building worlds block by block, making something beautiful out of nothing. turns out it's not that different from design. honestly? i don't know exactly where i'm headed in life yet. but i know i want to keep making things, keep learning, and keep finding little pockets of joy. whether that's in a pixel, a brushstroke, or a minecraft build. ✦
-                            </p>
+                            <div class="max-w-[550px]">
+                                <p class="font-mono text-lg text-purple-500 mb-1">chapter 03</p>
+                                <h3 class="font-mono text-2xl text-gray-800 font-bold mb-3">where i'm going</h3>
+                                <p class="font-mono text-lg text-gray-700 leading-relaxed">
+                                    i used to paint. back when life felt lighter and time moved slower. i haven't picked up a brush in a while, but that same part of me found a new home in minecraft. building worlds block by block, making something beautiful out of nothing. turns out it's not that different from design. honestly? i don't know exactly where i'm headed in life yet. but i know i want to keep making things, keep learning, and keep finding little pockets of joy. whether that's in a pixel, a brushstroke, or a minecraft build. ✦
+                                </p>
+                            </div>
                         </div>
                     </div>
 
                     <!-- Guestbook Entries Section -->
                     <div class="max-w-4xl mx-auto px-8 py-10">
                         <h3 class="font-pixel text-xl text-gray-800 mb-6 text-center">guestbook entries ✦</h3>
-                        <div class="space-y-4">
-                            <div class="bg-white p-4 pixel-border-thin">
-                                <div class="flex items-center gap-2 mb-2">
-                                    <span class="font-mono text-base font-bold text-gray-800">visitor_001</span>
-                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <!-- Pixel Heart -->
-                                        <rect x="2" y="2" width="2" height="2" fill="#FF9EB5"/>
-                                        <rect x="6" y="2" width="2" height="2" fill="#FF9EB5"/>
-                                        <rect x="1" y="3" width="7" height="2" fill="#FF9EB5"/>
-                                        <rect x="2" y="5" width="5" height="2" fill="#FF9EB5"/>
-                                        <rect x="3" y="7" width="3" height="2" fill="#FF9EB5"/>
-                                        <rect x="4" y="9" width="1" height="1" fill="#FF9EB5"/>
-                                    </svg>
-                                </div>
-                                <p class="font-mono text-base text-gray-700">love the pixel aesthetic! so cute ✨</p>
-                            </div>
-
-                            <div class="bg-white p-4 pixel-border-thin">
-                                <div class="flex items-center gap-2 mb-2">
-                                    <span class="font-mono text-base font-bold text-gray-800">designer_friend</span>
-                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <!-- Pixel Heart -->
-                                        <rect x="2" y="2" width="2" height="2" fill="#FF9EB5"/>
-                                        <rect x="6" y="2" width="2" height="2" fill="#FF9EB5"/>
-                                        <rect x="1" y="3" width="7" height="2" fill="#FF9EB5"/>
-                                        <rect x="2" y="5" width="5" height="2" fill="#FF9EB5"/>
-                                        <rect x="3" y="7" width="3" height="2" fill="#FF9EB5"/>
-                                        <rect x="4" y="9" width="1" height="1" fill="#FF9EB5"/>
-                                    </svg>
-                                </div>
-                                <p class="font-mono text-base text-gray-700">your work is amazing! keep it up 🌸</p>
-                            </div>
-
-                            <div class="bg-white p-4 pixel-border-thin">
-                                <div class="flex items-center gap-2 mb-2">
-                                    <span class="font-mono text-base font-bold text-gray-800">stormi_fan</span>
-                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <!-- Pixel Heart -->
-                                        <rect x="2" y="2" width="2" height="2" fill="#FF9EB5"/>
-                                        <rect x="6" y="2" width="2" height="2" fill="#FF9EB5"/>
-                                        <rect x="1" y="3" width="7" height="2" fill="#FF9EB5"/>
-                                        <rect x="2" y="5" width="5" height="2" fill="#FF9EB5"/>
-                                        <rect x="3" y="7" width="3" height="2" fill="#FF9EB5"/>
-                                        <rect x="4" y="9" width="1" height="1" fill="#FF9EB5"/>
-                                    </svg>
-                                </div>
-                                <p class="font-mono text-base text-gray-700">stormi is adorable!! 🐱💜</p>
-                            </div>
+                        <div id="guestbook-entries" class="space-y-4">
+                            <!-- Entries will be loaded from Firebase -->
+                            <p class="font-mono text-lg text-gray-400 text-center py-8">loading entries...</p>
                         </div>
                     </div>
                 </div>
@@ -656,7 +676,7 @@
         </div>
 
         <!-- Fixed Stormi Icon -->
-        <div class="fixed bottom-[5%] right-[3%] z-40 hover:scale-105 transition-transform duration-200">
+        <div class="stormi-fixed fixed bottom-[5%] right-[3%] z-40 hover:scale-105 transition-transform duration-200">
             <img src="assets/images/STORMI.png" alt="Stormi" class="w-24 h-24 object-contain" style="image-rendering: pixelated; filter: drop-shadow(4px 4px 0px rgba(0, 0, 0, 0.2));">
         </div>
 

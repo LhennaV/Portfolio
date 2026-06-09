@@ -198,3 +198,149 @@
     transform: scale(1.05);
     filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.2));
 }
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+    /* Hide ONLY external desktop background elements (outside home window) */
+    body > div > .desktop-element {
+        display: none !important;
+    }
+
+    /* Fixed Stormi icon - hide on mobile */
+    .stormi-fixed {
+        display: none !important;
+    }
+
+    /* Navbar adjustments */
+    nav {
+        flex-direction: column;
+        gap: 12px;
+        padding: 1rem 0.5rem !important;
+    }
+
+    nav > div {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    /* Navbar buttons - better mobile sizing */
+    .nav-btn {
+        font-size: 0.875rem !important;
+        padding: 0.625rem 0.875rem !important;
+        gap: 0.375rem !important;
+        flex: 1 1 auto;
+        min-width: 120px;
+    }
+
+    .nav-btn svg {
+        width: 14px !important;
+        height: 14px !important;
+    }
+
+    /* Logo/title text - more readable */
+    .font-pixel.text-xl {
+        font-size: 0.75rem !important;
+        line-height: 1.3 !important;
+    }
+
+    /* STORMI logo in navbar */
+    nav img {
+        width: 60px !important;
+        height: 60px !important;
+    }
+
+    /* Hero section */
+    .font-pixel.text-2xl,
+    .font-pixel.text-3xl {
+        font-size: 0.875rem !important;
+        line-height: 1.5 !important;
+    }
+
+    .font-mono.text-2xl,
+    .font-mono.text-3xl {
+        font-size: 1.25rem !important;
+        line-height: 1.5 !important;
+    }
+
+    /* Polaroid sections - force vertical stack */
+    .polaroid-section {
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 1rem !important;
+    }
+
+    /* Polaroid images */
+    .polaroid {
+        width: 100% !important;
+        max-width: 280px !important;
+    }
+
+    /* Text containers beside polaroids */
+    .polaroid-section > div {
+        width: 100% !important;
+        max-width: 280px !important;
+    }
+
+    /* Floating windows */
+    #work-window,
+    #links-window,
+    #faq-window,
+    #ethan-window,
+    #people-window,
+    #family-window {
+        width: 90% !important;
+        max-width: 90% !important;
+        left: 5% !important;
+        top: 5% !important;
+        margin: 0 !important;
+    }
+
+    /* Window content padding */
+    .overflow-y-auto.scrollbar-custom {
+        padding: 1rem !important;
+    }
+
+    /* FAQ questions smaller */
+    .faq-question {
+        font-size: 0.625rem !important;
+        padding: 0.75rem !important;
+    }
+
+    /* Home window margins */
+    .fixed.inset-0 {
+        margin: 0.5rem !important;
+    }
+
+    /* Project cards in Work window */
+    .grid.grid-cols-3 {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* Social links in Links window */
+    .grid.grid-cols-2 {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* Guestbook entries */
+    .space-y-3 > div {
+        padding: 0.75rem !important;
+    }
+
+    /* Polaroid container - keep min height for mobile */
+    .relative.min-h-\[1200px\] {
+        min-height: 1500px !important;
+    }
+
+    /* Hearts and floating icons inside home - keep scattered and visible */
+    .relative.min-h-\[1200px\] .desktop-element {
+        display: block !important;
+        position: absolute !important;
+    }
+
+    /* Scale down floating elements on mobile */
+    .relative.min-h-\[1200px\] .desktop-element svg {
+        width: 32px !important;
+        height: 32px !important;
+    }
+}
