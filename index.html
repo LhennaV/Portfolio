@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lhenna's Portfolio</title>
+    <link rel="icon" type="image/png" href="assets/images/head ni nyormi.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        pixel: ['"Press Start 2P"', 'cursive'],
+                        mono: ['VT323', 'monospace'],
+                    },
+                    colors: {
+                        'bg-purple': '#F7F5FF',
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="font-mono bg-[#F7F5FF] overflow-hidden w-screen h-screen">
+    <div class="relative w-full h-screen bg-[#F7F5FF] overflow-hidden">
+        <!-- Main Home Window -->
+        <div class="fixed inset-0 m-6 md:m-8 bg-[#F7F5FF] pixel-border overflow-hidden flex flex-col z-20">
+            <!-- Navbar -->
+            <nav class="flex items-center justify-between px-6 py-4 bg-[#9F7AEA] border-b-4 border-[#8B5CF6]">
+                <!-- Left Buttons -->
+                <div class="flex items-center gap-3">
+                    <button class="nav-btn font-mono text-lg font-normal bg-[#9F7AEA] text-white px-4 py-2 pixel-button hover:bg-[#8B5CF6] transition-all duration-100 flex items-center gap-2">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Pixel Star -->
+                            <rect x="7" y="2" width="2" height="2" fill="#F9D576"/>
+                            <rect x="4" y="5" width="2" height="2" fill="#F9D576"/>
+                            <rect x="10" y="5" width="2" height="2" fill="#F9D576"/>
+                            <rect x="7" y="5" width="2" height="2" fill="#F9D576"/>
+                            <rect x="7" y="8" width="2" height="2" fill="#F9D576"/>
+                            <rect x="4" y="8" width="2" height="2" fill="#F9D576"/>
+                            <rect x="10" y="8" width="2" height="2" fill="#F9D576"/>
+                            <rect x="7" y="11" width="2" height="2" fill="#F9D576"/>
+                        </svg>
+                        Work
+                    </button>
+                    <button class="nav-btn font-mono text-lg font-normal bg-[#9F7AEA] text-white px-4 py-2 pixel-button hover:bg-[#8B5CF6] transition-all duration-100 flex items-center gap-2">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Pixel Heart -->
+                            <rect x="4" y="4" width="2" height="2" fill="#FF9EB5"/>
+                            <rect x="10" y="4" width="2" height="2" fill="#FF9EB5"/>
+                            <rect x="2" y="6" width="12" height="2" fill="#FF9EB5"/>
+                            <rect x="3" y="8" width="10" height="2" fill="#FF9EB5"/>
+                            <rect x="5" y="10" width="6" height="2" fill="#FF9EB5"/>
+                            <rect x="7" y="12" width="2" height="2" fill="#FF9EB5"/>
+                        </svg>
+                        About
+                    </button>
+                </div>
+
+                <!-- Center Logo/Title -->
+                <div class="flex items-center gap-2">
+                    <img src="assets/images/STORMI.png" alt="Lhenna's Portfolio" class="h-8 w-8 object-contain">
+                    <span class="font-mono text-white text-lg font-normal">Lhenna's Portfolio</span>
+                </div>
+
+                <!-- Right Buttons -->
+                <div class="flex items-center gap-3">
+                    <button class="nav-btn font-mono text-lg font-normal bg-[#9F7AEA] text-white px-4 py-2 pixel-button hover:bg-[#8B5CF6] transition-all duration-100 flex items-center gap-2">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Pixel Gem/Diamond -->
+                            <rect x="7" y="3" width="2" height="2" fill="#B8D4F1"/>
+                            <rect x="5" y="5" width="6" height="2" fill="#B8D4F1"/>
+                            <rect x="4" y="7" width="8" height="2" fill="#89CFF0"/>
+                            <rect x="5" y="9" width="6" height="2" fill="#89CFF0"/>
+                            <rect x="6" y="11" width="4" height="2" fill="#5DADE2"/>
+                            <rect x="7" y="13" width="2" height="2" fill="#5DADE2"/>
+                        </svg>
+                        Links
+                    </button>
+                    <button class="nav-btn font-mono text-lg font-normal bg-[#9F7AEA] text-white px-4 py-2 pixel-button hover:bg-[#8B5CF6] transition-all duration-100 flex items-center gap-2">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Pixel Question Block (Minecraft style) -->
+                            <rect x="2" y="2" width="12" height="12" fill="#F9D576"/>
+                            <rect x="3" y="3" width="10" height="10" fill="#F4E04D"/>
+                            <rect x="6" y="5" width="4" height="2" fill="#8B7355"/>
+                            <rect x="7" y="7" width="2" height="2" fill="#8B7355"/>
+                            <rect x="7" y="10" width="2" height="2" fill="#8B7355"/>
+                        </svg>
+                        FAQ
+                    </button>
+                </div>
+            </nav>
+
+            <!-- Scrollable Content Area -->
+            <div class="flex-1 overflow-y-auto scrollbar-custom">
+                <div class="max-w-5xl mx-auto px-8 py-16">
+                    <!-- Hero Section -->
+                    <div class="text-center mb-16">
+                        <h1 class="font-pixel text-2xl md:text-3xl text-gray-800 mb-6 leading-relaxed">
+                            hi, i'm lhenna.
+                        </h1>
+                        <p class="font-mono text-2xl md:text-3xl text-purple-400">
+                            ui/ux designer & frontend developer
+                        </p>
+                    </div>
+
+                    <!-- Polaroid Photos Section with Text -->
+                    <div class="relative min-h-[1200px] mb-10">
+                        <!-- Hidden Easter Egg Hearts -->
+                        <div id="heart-red" class="desktop-element absolute cursor-grab select-none transition-transform duration-200 z-30 hover:scale-110" data-sound="heart" style="top: 35%; left: 8%;">
+                            <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="6" y="6" width="4" height="4" fill="#FF6B9D"/>
+                                <rect x="14" y="6" width="4" height="4" fill="#FF6B9D"/>
+                                <rect x="4" y="10" width="20" height="4" fill="#FF6B9D"/>
+                                <rect x="6" y="14" width="16" height="4" fill="#FF6B9D"/>
+                                <rect x="8" y="18" width="12" height="4" fill="#FF6B9D"/>
+                                <rect x="12" y="22" width="4" height="4" fill="#FF6B9D"/>
+                            </svg>
+                        </div>
+
+                        <div id="heart-pink" class="desktop-element absolute cursor-grab select-none transition-transform duration-200 z-30 hover:scale-110" data-sound="heart" style="top: 65%; right: 12%;">
+                            <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="6" y="6" width="4" height="4" fill="#FFB7D5"/>
+                                <rect x="14" y="6" width="4" height="4" fill="#FFB7D5"/>
+                                <rect x="4" y="10" width="20" height="4" fill="#FFB7D5"/>
+                                <rect x="6" y="14" width="16" height="4" fill="#FFB7D5"/>
+                                <rect x="8" y="18" width="12" height="4" fill="#FFB7D5"/>
+                                <rect x="12" y="22" width="4" height="4" fill="#FFB7D5"/>
+                            </svg>
+                        </div>
+
+                        <div id="heart-light" class="desktop-element absolute cursor-grab select-none transition-transform duration-200 z-30 hover:scale-110" data-sound="heart" style="top: 80%; left: 70%;">
+                            <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="6" y="6" width="4" height="4" fill="#D8C4F0"/>
+                                <rect x="14" y="6" width="4" height="4" fill="#D8C4F0"/>
+                                <rect x="4" y="10" width="20" height="4" fill="#D8C4F0"/>
+                                <rect x="6" y="14" width="16" height="4" fill="#D8C4F0"/>
+                                <rect x="8" y="18" width="12" height="4" fill="#D8C4F0"/>
+                                <rect x="12" y="22" width="4" height="4" fill="#D8C4F0"/>
+                            </svg>
+                        </div>
+
+                        <!-- Floating Elements Inside Home -->
+                        <div class="desktop-element absolute cursor-grab select-none transition-transform duration-200 hover:scale-110"
+                             data-sound="star"
+                             style="top: -40px; left: 10%;">
+                            <svg width="32" height="32" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="16" y="4" width="8" height="8" fill="#F9D576"/>
+                                <rect x="8" y="12" width="8" height="8" fill="#F9D576"/>
+                                <rect x="24" y="12" width="8" height="8" fill="#F9D576"/>
+                                <rect x="16" y="12" width="8" height="8" fill="#F9D576"/>
+                                <rect x="16" y="20" width="8" height="8" fill="#F9D576"/>
+                                <rect x="8" y="20" width="8" height="8" fill="#F9D576"/>
+                                <rect x="24" y="20" width="8" height="8" fill="#F9D576"/>
+                                <rect x="16" y="28" width="8" height="8" fill="#F9D576"/>
+                            </svg>
+                        </div>
+                        <div class="desktop-element absolute cursor-grab select-none transition-transform duration-200 hover:scale-110"
+                             data-sound="sparkle"
+                             style="top: 30px; right: 15%;">
+                            <svg width="28" height="28" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="16" y="4" width="8" height="32" fill="#B8D4F1"/>
+                                <rect x="4" y="16" width="32" height="8" fill="#B8D4F1"/>
+                                <rect x="28" y="8" width="4" height="4" fill="#B8D4F1"/>
+                                <rect x="8" y="8" width="4" height="4" fill="#B8D4F1"/>
+                                <rect x="28" y="28" width="4" height="4" fill="#B8D4F1"/>
+                                <rect x="8" y="28" width="4" height="4" fill="#B8D4F1"/>
+                            </svg>
+                        </div>
+                        <div class="desktop-element absolute cursor-grab select-none transition-transform duration-200 hover:scale-110"
+                             data-sound="mushroom"
+                             style="top: 280px; left: 2%;">
+                            <svg width="36" height="36" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="18" y="28" width="12" height="16" fill="#E8D5D5"/>
+                                <rect x="8" y="16" width="32" height="16" fill="#DC6B7D"/>
+                                <rect x="12" y="20" width="6" height="6" fill="#F5E6E8"/>
+                                <rect x="30" y="18" width="4" height="4" fill="#F5E6E8"/>
+                                <rect x="20" y="26" width="4" height="4" fill="#F5E6E8"/>
+                            </svg>
+                        </div>
+                        <div class="desktop-element absolute cursor-grab select-none transition-transform duration-200 hover:scale-110"
+                             data-sound="butterfly"
+                             style="top: 320px; right: 5%;">
+                            <svg width="36" height="36" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="4" y="12" width="12" height="12" fill="#F4B4D0"/>
+                                <rect x="32" y="12" width="12" height="12" fill="#F4B4D0"/>
+                                <rect x="8" y="28" width="8" height="8" fill="#E89FC4"/>
+                                <rect x="32" y="28" width="8" height="8" fill="#E89FC4"/>
+                                <rect x="20" y="8" width="8" height="32" fill="#8B5E83"/>
+                                <rect x="20" y="4" width="8" height="8" fill="#8B5E83"/>
+                                <rect x="10" y="16" width="4" height="4" fill="#FFFFFF"/>
+                                <rect x="34" y="16" width="4" height="4" fill="#FFFFFF"/>
+                            </svg>
+                        </div>
+                        <div class="desktop-element absolute cursor-grab select-none transition-transform duration-200 hover:scale-110"
+                             data-sound="cloud"
+                             style="top: 350px; left: 88%;">
+                            <svg width="48" height="24" viewBox="0 0 64 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="16" y="12" width="32" height="16" fill="#E3DFF2"/>
+                                <rect x="8" y="16" width="8" height="12" fill="#E3DFF2"/>
+                                <rect x="48" y="16" width="8" height="12" fill="#E3DFF2"/>
+                                <rect x="24" y="8" width="16" height="8" fill="#E3DFF2"/>
+                                <rect x="32" y="4" width="8" height="8" fill="#E3DFF2"/>
+                            </svg>
+                        </div>
+                        <div class="desktop-element absolute cursor-grab select-none transition-transform duration-200 hover:scale-110"
+                             data-sound="star"
+                             style="top: 420px; left: 45%;">
+                            <svg width="24" height="24" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="16" y="4" width="8" height="8" fill="#F9D576"/>
+                                <rect x="8" y="12" width="8" height="8" fill="#F9D576"/>
+                                <rect x="24" y="12" width="8" height="8" fill="#F9D576"/>
+                                <rect x="16" y="12" width="8" height="8" fill="#F9D576"/>
+                                <rect x="16" y="20" width="8" height="8" fill="#F9D576"/>
+                                <rect x="8" y="20" width="8" height="8" fill="#F9D576"/>
+                                <rect x="24" y="20" width="8" height="8" fill="#F9D576"/>
+                                <rect x="16" y="28" width="8" height="8" fill="#F9D576"/>
+                            </svg>
+                        </div>
+                        <div class="desktop-element absolute cursor-grab select-none transition-transform duration-200 hover:scale-110"
+                             data-sound="moon"
+                             style="top: 200px; left: 8%;">
+                            <svg width="32" height="32" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="8" y="8" width="32" height="32" fill="#B8A4D5"/>
+                                <rect x="28" y="8" width="12" height="8" fill="#F7F5FF"/>
+                                <rect x="32" y="16" width="8" height="8" fill="#F7F5FF"/>
+                                <rect x="36" y="24" width="4" height="8" fill="#F7F5FF"/>
+                                <rect x="16" y="16" width="4" height="4" fill="#9B88B8"/>
+                                <rect x="24" y="24" width="4" height="4" fill="#9B88B8"/>
+                            </svg>
+                        </div>
+                        <div class="desktop-element absolute cursor-grab select-none transition-transform duration-200 hover:scale-110"
+                             data-sound="sparkle"
+                             style="top: 100px; right: 8%;">
+                            <svg width="24" height="24" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="16" y="4" width="8" height="32" fill="#B8D4F1"/>
+                                <rect x="4" y="16" width="32" height="8" fill="#B8D4F1"/>
+                                <rect x="28" y="8" width="4" height="4" fill="#B8D4F1"/>
+                                <rect x="8" y="8" width="4" height="4" fill="#B8D4F1"/>
+                                <rect x="28" y="28" width="4" height="4" fill="#B8D4F1"/>
+                                <rect x="8" y="28" width="4" height="4" fill="#B8D4F1"/>
+                            </svg>
+                        </div>
+                        <div class="desktop-element absolute cursor-grab select-none transition-transform duration-200 hover:scale-110"
+                             data-sound="heart"
+                             style="top: 360px; left: 85%;">
+                            <svg width="32" height="32" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="8" y="8" width="8" height="8" fill="#FF9EB5"/>
+                                <rect x="24" y="8" width="8" height="8" fill="#FF9EB5"/>
+                                <rect x="4" y="16" width="36" height="8" fill="#FF9EB5"/>
+                                <rect x="8" y="24" width="28" height="8" fill="#FF9EB5"/>
+                                <rect x="12" y="32" width="20" height="8" fill="#FF9EB5"/>
+                                <rect x="20" y="40" width="4" height="4" fill="#FF9EB5"/>
+                            </svg>
+                        </div>
+                        <div class="desktop-element absolute cursor-grab select-none transition-transform duration-200 hover:scale-110"
+                             data-sound="flower"
+                             style="top: 50px; left: 20%;">
+                            <svg width="32" height="32" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="16" y="4" width="8" height="8" fill="#DDA0DD"/>
+                                <rect x="8" y="12" width="8" height="8" fill="#DDA0DD"/>
+                                <rect x="24" y="12" width="8" height="8" fill="#DDA0DD"/>
+                                <rect x="16" y="20" width="8" height="8" fill="#F9D576"/>
+                                <rect x="16" y="28" width="8" height="16" fill="#90EE90"/>
+                                <rect x="4" y="20" width="8" height="8" fill="#DDA0DD"/>
+                                <rect x="28" y="20" width="8" height="8" fill="#DDA0DD"/>
+                            </svg>
+                        </div>
+
+                        <!-- Polaroid 1: Selfie - Left -->
+                        <div class="polaroid absolute top-[20px] left-[5%] bg-white p-4 pixel-shadow rotate-[-6deg] hover:rotate-[-2deg] transition-transform duration-100 cursor-pointer z-10">
+                            <div class="w-[200px] h-[200px] bg-[#EDE9FE] flex items-center justify-center pixel-border-thin overflow-hidden">
+                                <img src="assets/images/my picture.png" alt="Lhenna" class="w-full h-full object-cover">
+                            </div>
+                            <p class="font-mono text-center mt-3 text-gray-700 text-lg">that's me! 👋</p>
+                        </div>
+                        <div class="absolute top-[20px] left-[33%] max-w-[550px]">
+                            <p class="font-mono text-lg text-purple-500 mb-1">chapter 01</p>
+                            <h3 class="font-mono text-2xl text-gray-800 font-bold mb-3">who i am</h3>
+                            <p class="font-mono text-lg text-gray-700 leading-relaxed">
+                                hi, i'm lhenna. a ui/ux designer who also dabbles in frontend dev. i got into design because i've always cared about how things feel, not just how they look. that tiny moment when a user just gets an interface without thinking? that's what i'm chasing every single time. i'm currently working on real projects, learning as i go, and slowly building a body of work i'm proud of. ✦
+                            </p>
+                        </div>
+
+                        <!-- Polaroid 2: Stormi - Right -->
+                        <div class="absolute top-[460px] left-[5%] max-w-[550px]">
+                            <p class="font-mono text-lg text-purple-500 mb-1">chapter 02</p>
+                            <h3 class="font-mono text-2xl text-gray-800 font-bold mb-3">the real me</h3>
+                            <p class="font-mono text-lg text-gray-700 leading-relaxed">
+                                outside of work, i'm probably gaming, deep in some aesthetic rabbit hole, or being judged by my cat stormi. she's a tortoiseshell and she is, without question, the most important person in my life. i like cozy things, purple everything, and interfaces that feel like a warm hug. i'm a little magastos, a little chaotic, and very much a work in progress. and i think that's okay. oh, and i sleep. a lot. i've been a certified sleepy kid since birth. the kind who can fall asleep anywhere, anytime, no questions asked. 🐱
+                            </p>
+                        </div>
+                        <div class="polaroid absolute top-[460px] right-[5%] bg-white p-4 pixel-shadow rotate-[3deg] hover:rotate-[1deg] transition-transform duration-100 cursor-pointer z-10">
+                            <div class="w-[200px] h-[200px] bg-[#EDE9FE] flex items-center justify-center pixel-border-thin overflow-hidden">
+                                <img src="assets/images/pic of stormi.png" alt="Stormi" class="w-full h-full object-cover">
+                            </div>
+                            <p class="font-mono text-center mt-3 text-gray-700 text-lg">my daughter 🐾</p>
+                        </div>
+
+                        <!-- Polaroid 3: Minecraft - Left -->
+                        <div class="polaroid absolute top-[900px] left-[5%] bg-white p-4 pixel-shadow rotate-[-4deg] hover:rotate-0 transition-transform duration-100 cursor-pointer z-10">
+                            <div class="w-[200px] h-[200px] bg-[#EDE9FE] flex items-center justify-center pixel-border-thin overflow-hidden">
+                                <img src="assets/images/minecraft.png" alt="Minecraft" class="w-full h-full object-cover">
+                            </div>
+                            <p class="font-mono text-center mt-3 text-gray-700 text-lg">my happy place ✦</p>
+                        </div>
+                        <div class="absolute top-[900px] left-[33%] max-w-[550px]">
+                            <p class="font-mono text-lg text-purple-500 mb-1">chapter 03</p>
+                            <h3 class="font-mono text-2xl text-gray-800 font-bold mb-3">where i'm going</h3>
+                            <p class="font-mono text-lg text-gray-700 leading-relaxed">
+                                i used to paint. back when life felt lighter and time moved slower. i haven't picked up a brush in a while, but that same part of me found a new home in minecraft. building worlds block by block, making something beautiful out of nothing. turns out it's not that different from design. honestly? i don't know exactly where i'm headed in life yet. but i know i want to keep making things, keep learning, and keep finding little pockets of joy. whether that's in a pixel, a brushstroke, or a minecraft build. ✦
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Guestbook Entries Section -->
+                    <div class="max-w-4xl mx-auto px-8 py-10">
+                        <h3 class="font-pixel text-xl text-gray-800 mb-6 text-center">guestbook entries ✦</h3>
+                        <div class="space-y-4">
+                            <div class="bg-white p-4 pixel-border-thin">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="font-mono text-base font-bold text-gray-800">visitor_001</span>
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <!-- Pixel Heart -->
+                                        <rect x="2" y="2" width="2" height="2" fill="#FF9EB5"/>
+                                        <rect x="6" y="2" width="2" height="2" fill="#FF9EB5"/>
+                                        <rect x="1" y="3" width="7" height="2" fill="#FF9EB5"/>
+                                        <rect x="2" y="5" width="5" height="2" fill="#FF9EB5"/>
+                                        <rect x="3" y="7" width="3" height="2" fill="#FF9EB5"/>
+                                        <rect x="4" y="9" width="1" height="1" fill="#FF9EB5"/>
+                                    </svg>
+                                </div>
+                                <p class="font-mono text-base text-gray-700">love the pixel aesthetic! so cute ✨</p>
+                            </div>
+
+                            <div class="bg-white p-4 pixel-border-thin">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="font-mono text-base font-bold text-gray-800">designer_friend</span>
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <!-- Pixel Heart -->
+                                        <rect x="2" y="2" width="2" height="2" fill="#FF9EB5"/>
+                                        <rect x="6" y="2" width="2" height="2" fill="#FF9EB5"/>
+                                        <rect x="1" y="3" width="7" height="2" fill="#FF9EB5"/>
+                                        <rect x="2" y="5" width="5" height="2" fill="#FF9EB5"/>
+                                        <rect x="3" y="7" width="3" height="2" fill="#FF9EB5"/>
+                                        <rect x="4" y="9" width="1" height="1" fill="#FF9EB5"/>
+                                    </svg>
+                                </div>
+                                <p class="font-mono text-base text-gray-700">your work is amazing! keep it up 🌸</p>
+                            </div>
+
+                            <div class="bg-white p-4 pixel-border-thin">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="font-mono text-base font-bold text-gray-800">stormi_fan</span>
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <!-- Pixel Heart -->
+                                        <rect x="2" y="2" width="2" height="2" fill="#FF9EB5"/>
+                                        <rect x="6" y="2" width="2" height="2" fill="#FF9EB5"/>
+                                        <rect x="1" y="3" width="7" height="2" fill="#FF9EB5"/>
+                                        <rect x="2" y="5" width="5" height="2" fill="#FF9EB5"/>
+                                        <rect x="3" y="7" width="3" height="2" fill="#FF9EB5"/>
+                                        <rect x="4" y="9" width="1" height="1" fill="#FF9EB5"/>
+                                    </svg>
+                                </div>
+                                <p class="font-mono text-base text-gray-700">stormi is adorable!! 🐱💜</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Work Window (Hidden by default) -->
+        <div id="work-window" class="fixed top-[10%] left-[15%] w-[70%] max-w-[900px] bg-[#F7F5FF] pixel-border-yellow overflow-hidden flex-col z-50 hidden">
+            <!-- Title Bar -->
+            <div class="flex items-center justify-between px-4 py-3 bg-[#FEF9C3] border-b-4 border-[#F9D576] cursor-move" id="work-titlebar">
+                <div class="flex items-center gap-2">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Pixel Star -->
+                        <rect x="7" y="2" width="2" height="2" fill="#F9D576"/>
+                        <rect x="4" y="5" width="2" height="2" fill="#F9D576"/>
+                        <rect x="10" y="5" width="2" height="2" fill="#F9D576"/>
+                        <rect x="7" y="5" width="2" height="2" fill="#F9D576"/>
+                        <rect x="7" y="8" width="2" height="2" fill="#F9D576"/>
+                        <rect x="4" y="8" width="2" height="2" fill="#F9D576"/>
+                        <rect x="10" y="8" width="2" height="2" fill="#F9D576"/>
+                        <rect x="7" y="11" width="2" height="2" fill="#F9D576"/>
+                    </svg>
+                    <span class="font-pixel text-sm text-[#1A1A1A]">works</span>
+                </div>
+                <button id="work-close" class="w-8 h-8 bg-[#F9D576] hover:bg-[#F4E04D] pixel-button-small flex items-center justify-center transition-colors p-1">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Pixel X -->
+                        <rect x="2" y="2" width="2" height="2" fill="#1A1A1A"/>
+                        <rect x="12" y="2" width="2" height="2" fill="#1A1A1A"/>
+                        <rect x="4" y="4" width="2" height="2" fill="#1A1A1A"/>
+                        <rect x="10" y="4" width="2" height="2" fill="#1A1A1A"/>
+                        <rect x="6" y="6" width="4" height="4" fill="#1A1A1A"/>
+                        <rect x="4" y="10" width="2" height="2" fill="#1A1A1A"/>
+                        <rect x="10" y="10" width="2" height="2" fill="#1A1A1A"/>
+                        <rect x="2" y="12" width="2" height="2" fill="#1A1A1A"/>
+                        <rect x="12" y="12" width="2" height="2" fill="#1A1A1A"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Content Area -->
+            <div class="overflow-y-auto scrollbar-custom p-6 max-h-[70vh]">
+                <div class="grid grid-cols-1 gap-6">
+                    <!-- Project 1: EduSpace -->
+                    <div class="bg-white p-4 pixel-border-thin">
+                        <div class="w-full h-[160px] bg-[#EDE9FE] flex items-center justify-center pixel-border-thin mb-4 overflow-hidden">
+                            <img src="assets/images/EduSpace Photo.png" alt="EduSpace Screenshot" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="font-pixel text-lg text-gray-800 mb-2">EduSpace</h3>
+                        <p class="font-mono text-sm text-gray-600 mb-1">ui/ux design</p>
+                        <p class="font-mono text-base text-gray-700 mb-3 leading-relaxed">
+                            a room scheduling system designed to make booking and managing educational spaces simple and stress-free.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-[#E9D5FF] text-purple-700 font-mono text-sm rounded-full pixel-border-thin">UI/UX</span>
+                            <span class="px-3 py-1 bg-[#E9D5FF] text-purple-700 font-mono text-sm rounded-full pixel-border-thin">Figma</span>
+                        </div>
+                        <a href="https://www.figma.com/design/ZrjQ19shEBsHez8wsHeyRh/EduSpace?node-id=95-408&t=uMm2HpgYmXsKXbHC-0" target="_blank" class="inline-block font-mono text-base bg-[#9F7AEA] text-white px-4 py-2 pixel-button hover:bg-[#8B5CF6] transition-all duration-100">
+                            view project
+                        </a>
+                    </div>
+
+                    <!-- Project 2: HomeSure -->
+                    <div class="bg-white p-4 pixel-border-thin">
+                        <div class="w-full h-[160px] bg-[#EDE9FE] flex items-center justify-center pixel-border-thin mb-4 overflow-hidden">
+                            <img src="assets/images/HomeSure Photo.png" alt="HomeSure Screenshot" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="font-pixel text-lg text-gray-800 mb-2">HomeSure</h3>
+                        <p class="font-mono text-sm text-gray-600 mb-1">design + frontend dev</p>
+                        <p class="font-mono text-base text-gray-700 mb-3 leading-relaxed">
+                            a property listing app for sta. maria with interactive barangay map overlays.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-[#E9D5FF] text-purple-700 font-mono text-sm rounded-full pixel-border-thin">Design</span>
+                            <span class="px-3 py-1 bg-[#E9D5FF] text-purple-700 font-mono text-sm rounded-full pixel-border-thin">Frontend</span>
+                            <span class="px-3 py-1 bg-[#E9D5FF] text-purple-700 font-mono text-sm rounded-full pixel-border-thin">Leaflet.js</span>
+                        </div>
+                        <a href="https://deft-tanuki-e7459d.netlify.app/" target="_blank" class="inline-block font-mono text-base bg-[#9F7AEA] text-white px-4 py-2 pixel-button hover:bg-[#8B5CF6] transition-all duration-100">
+                            view project
+                        </a>
+                    </div>
+
+                    <!-- Project 3: GTrack -->
+                    <div class="bg-white p-4 pixel-border-thin">
+                        <div class="w-full h-[160px] bg-[#EDE9FE] flex items-center justify-center pixel-border-thin mb-4 overflow-hidden">
+                            <img src="assets/images/GTrack Photo.png" alt="GTrack Screenshot" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="font-pixel text-lg text-gray-800 mb-2">GTrack</h3>
+                        <p class="font-mono text-sm text-gray-600 mb-1">personal project</p>
+                        <p class="font-mono text-base text-gray-700 mb-3 leading-relaxed">
+                            a digital audit log for gcash transactions. built with love for someone special.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-[#E9D5FF] text-purple-700 font-mono text-sm rounded-full pixel-border-thin">Personal</span>
+                            <span class="px-3 py-1 bg-[#E9D5FF] text-purple-700 font-mono text-sm rounded-full pixel-border-thin">Collab</span>
+                        </div>
+                        <a href="https://www.figma.com/design/csy0D8GyqELHmkDRXk7Hzu/GTrack?node-id=0-1&p=f&t=uMm2HpgYmXsKXbHC-0" target="_blank" class="inline-block font-mono text-base bg-[#9F7AEA] text-white px-4 py-2 pixel-button hover:bg-[#8B5CF6] transition-all duration-100">
+                            view project
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Links Window (Hidden by default) -->
+        <div id="links-window" class="fixed top-[10%] left-[15%] w-[70%] max-w-[600px] bg-[#F7F5FF] pixel-border-blue overflow-hidden flex-col z-50 hidden">
+            <!-- Title Bar -->
+            <div class="flex items-center justify-between px-4 py-3 bg-[#A8D8EA] border-b-4 border-[#89CFF0] cursor-move" id="links-titlebar">
+                <div class="flex items-center gap-2">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Pixel Gem/Diamond -->
+                        <rect x="7" y="3" width="2" height="2" fill="#B8D4F1"/>
+                        <rect x="5" y="5" width="6" height="2" fill="#B8D4F1"/>
+                        <rect x="4" y="7" width="8" height="2" fill="#89CFF0"/>
+                        <rect x="5" y="9" width="6" height="2" fill="#89CFF0"/>
+                        <rect x="6" y="11" width="4" height="2" fill="#5DADE2"/>
+                        <rect x="7" y="13" width="2" height="2" fill="#5DADE2"/>
+                    </svg>
+                    <span class="font-pixel text-sm text-[#1A1A1A]">links</span>
+                </div>
+                <button id="links-close" class="w-8 h-8 bg-[#89CFF0] hover:bg-[#5DADE2] pixel-button-small flex items-center justify-center transition-colors p-1">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Pixel X -->
+                        <rect x="2" y="2" width="2" height="2" fill="#1A1A1A"/>
+                        <rect x="12" y="2" width="2" height="2" fill="#1A1A1A"/>
+                        <rect x="4" y="4" width="2" height="2" fill="#1A1A1A"/>
+                        <rect x="10" y="4" width="2" height="2" fill="#1A1A1A"/>
+                        <rect x="6" y="6" width="4" height="4" fill="#1A1A1A"/>
+                        <rect x="4" y="10" width="2" height="2" fill="#1A1A1A"/>
+                        <rect x="10" y="10" width="2" height="2" fill="#1A1A1A"/>
+                        <rect x="2" y="12" width="2" height="2" fill="#1A1A1A"/>
+                        <rect x="12" y="12" width="2" height="2" fill="#1A1A1A"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Content Area -->
+            <div class="overflow-y-auto scrollbar-custom p-6 max-h-[70vh]">
+                <!-- Social Links Section -->
+                <div class="mb-6">
+                    <h3 class="font-pixel text-base text-gray-800 mb-4">socials</h3>
+                    <div class="grid grid-cols-2 gap-3">
+                        <!-- GitHub -->
+                        <a href="https://github.com/LhennaV" target="_blank" class="flex items-center gap-3 px-4 py-3 bg-white pixel-border-thin hover:bg-[#F3F4F6] transition-colors">
+                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <!-- Detailed Pixel GitHub Octocat -->
+                                <rect x="8" y="8" width="24" height="24" fill="#24292E"/>
+                                <rect x="6" y="10" width="28" height="20" fill="#24292E"/>
+                                <!-- Ears -->
+                                <rect x="10" y="8" width="4" height="6" fill="#24292E"/>
+                                <rect x="26" y="8" width="4" height="6" fill="#24292E"/>
+                                <!-- Eyes -->
+                                <rect x="13" y="16" width="4" height="4" fill="white"/>
+                                <rect x="23" y="16" width="4" height="4" fill="white"/>
+                                <rect x="15" y="17" width="2" height="2" fill="#24292E"/>
+                                <rect x="25" y="17" width="2" height="2" fill="#24292E"/>
+                                <!-- Smile -->
+                                <rect x="16" y="24" width="8" height="2" fill="white"/>
+                                <rect x="14" y="22" width="2" height="2" fill="white"/>
+                                <rect x="24" y="22" width="2" height="2" fill="white"/>
+                                <!-- Arms -->
+                                <rect x="6" y="20" width="4" height="8" fill="#24292E"/>
+                                <rect x="30" y="20" width="4" height="8" fill="#24292E"/>
+                            </svg>
+                            <span class="font-mono text-base text-gray-800 font-semibold">GitHub</span>
+                        </a>
+
+                        <!-- LinkedIn -->
+                        <a href="https://www.linkedin.com/in/lhenna-marie-velasco-151825342?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank" class="flex items-center gap-3 px-4 py-3 bg-white pixel-border-thin hover:bg-[#E7F3F8] transition-colors">
+                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <!-- Rounded Pixel LinkedIn -->
+                                <rect x="6" y="8" width="28" height="24" fill="#0A66C2"/>
+                                <rect x="8" y="6" width="24" height="28" fill="#0A66C2"/>
+                                <rect x="10" y="10" width="20" height="20" fill="#0077B5"/>
+                                <!-- in logo -->
+                                <rect x="14" y="16" width="3" height="10" fill="white"/>
+                                <rect x="14" y="14" width="3" height="1" fill="white"/>
+                                <rect x="19" y="16" width="3" height="10" fill="white"/>
+                                <rect x="22" y="19" width="5" height="7" fill="white"/>
+                                <rect x="22" y="16" width="3" height="2" fill="white"/>
+                            </svg>
+                            <span class="font-mono text-base text-gray-800 font-semibold">LinkedIn</span>
+                        </a>
+
+                        <!-- Facebook -->
+                        <a href="https://www.facebook.com/share/1LPJa5SxQz/?mibextid=wwXIfr" target="_blank" class="flex items-center gap-3 px-4 py-3 bg-white pixel-border-thin hover:bg-[#E7F3FF] transition-colors">
+                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <!-- Rounded Pixel Facebook -->
+                                <rect x="6" y="8" width="28" height="24" fill="#1877F2"/>
+                                <rect x="8" y="6" width="24" height="28" fill="#1877F2"/>
+                                <rect x="10" y="10" width="20" height="20" fill="#1877F2"/>
+                                <!-- f logo -->
+                                <rect x="21" y="13" width="4" height="4" fill="white"/>
+                                <rect x="18" y="17" width="8" height="2" fill="white"/>
+                                <rect x="20" y="19" width="4" height="10" fill="white"/>
+                                <rect x="17" y="21" width="9" height="2" fill="white"/>
+                            </svg>
+                            <span class="font-mono text-base text-gray-800 font-semibold">Facebook</span>
+                        </a>
+
+                        <!-- Instagram -->
+                        <a href="https://www.instagram.com/meow.riee_?igsh=MTA2cGpvaWNjZGl1Yw%3D%3D&utm_source=qr" target="_blank" class="flex items-center gap-3 px-4 py-3 bg-white pixel-border-thin hover:bg-[#FFF0F5] transition-colors">
+                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <!-- Gradient Pixel Instagram Camera -->
+                                <defs>
+                                    <linearGradient id="insta-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#833AB4;stop-opacity:1" />
+                                        <stop offset="50%" style="stop-color:#E1306C;stop-opacity:1" />
+                                        <stop offset="100%" style="stop-color:#FCAF45;stop-opacity:1" />
+                                    </linearGradient>
+                                </defs>
+                                <rect x="6" y="8" width="28" height="24" fill="url(#insta-gradient)"/>
+                                <rect x="8" y="6" width="24" height="28" fill="url(#insta-gradient)"/>
+                                <rect x="10" y="10" width="20" height="20" fill="url(#insta-gradient)"/>
+                                <!-- Camera -->
+                                <rect x="14" y="14" width="12" height="12" fill="white"/>
+                                <rect x="17" y="17" width="6" height="6" fill="url(#insta-gradient)"/>
+                                <rect x="19" y="19" width="2" height="2" fill="white"/>
+                                <rect x="24" y="14" width="3" height="3" fill="white"/>
+                            </svg>
+                            <span class="font-mono text-base text-gray-800 font-semibold">Instagram</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Guestbook Section -->
+                <div>
+                    <h3 class="font-pixel text-base text-gray-800 mb-4">guestbook</h3>
+
+                    <!-- Guestbook Form -->
+                    <div class="bg-white p-4 pixel-border-thin">
+                        <div class="mb-4">
+                            <label class="font-mono text-sm text-gray-700 block mb-2">name</label>
+                            <input type="text" id="guestbook-name" placeholder="your name" class="w-full px-3 py-2 font-mono text-sm border-2 border-[#C4B5F4] focus:border-[#9F7AEA] outline-none">
+                        </div>
+                        <div class="mb-4">
+                            <label class="font-mono text-sm text-gray-700 block mb-2">message</label>
+                            <textarea id="guestbook-message" placeholder="leave a message..." rows="3" class="w-full px-3 py-2 font-mono text-sm border-2 border-[#C4B5F4] focus:border-[#9F7AEA] outline-none resize-none"></textarea>
+                        </div>
+                        <button id="post-guestbook" class="font-mono text-base bg-[#9F7AEA] text-white px-4 py-2 pixel-button hover:bg-[#8B5CF6] transition-all duration-100">
+                            post
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ Window (Hidden by default) -->
+        <div id="faq-window" class="fixed top-[10%] left-[15%] w-[70%] max-w-[700px] bg-[#F7F5FF] pixel-border-orange overflow-hidden flex-col z-50 hidden">
+            <!-- Title Bar -->
+            <div class="flex items-center justify-between px-4 py-3 bg-[#F9A826] border-b-4 border-[#E59400] cursor-move" id="faq-titlebar">
+                <div class="flex items-center gap-2">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Pixel Question Block -->
+                        <rect x="2" y="2" width="12" height="12" fill="#F9D576"/>
+                        <rect x="3" y="3" width="10" height="10" fill="#F4E04D"/>
+                        <rect x="6" y="5" width="4" height="2" fill="#8B7355"/>
+                        <rect x="7" y="7" width="2" height="2" fill="#8B7355"/>
+                        <rect x="7" y="10" width="2" height="2" fill="#8B7355"/>
+                    </svg>
+                    <span class="font-pixel text-sm text-[#1A1A1A]">faqs</span>
+                </div>
+                <button id="faq-close" class="w-8 h-8 bg-[#E59400] hover:bg-[#CC8400] pixel-button-small flex items-center justify-center transition-colors p-1">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Pixel X -->
+                        <rect x="2" y="2" width="2" height="2" fill="#1A1A1A"/>
+                        <rect x="12" y="2" width="2" height="2" fill="#1A1A1A"/>
+                        <rect x="4" y="4" width="2" height="2" fill="#1A1A1A"/>
+                        <rect x="10" y="4" width="2" height="2" fill="#1A1A1A"/>
+                        <rect x="6" y="6" width="4" height="4" fill="#1A1A1A"/>
+                        <rect x="4" y="10" width="2" height="2" fill="#1A1A1A"/>
+                        <rect x="10" y="10" width="2" height="2" fill="#1A1A1A"/>
+                        <rect x="2" y="12" width="2" height="2" fill="#1A1A1A"/>
+                        <rect x="12" y="12" width="2" height="2" fill="#1A1A1A"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Content Area -->
+            <div class="overflow-y-auto scrollbar-custom p-6 max-h-[70vh]">
+                <div class="space-y-2" id="faq-list">
+                    <!-- FAQ items will be generated by JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Fixed Stormi Icon -->
+        <div class="fixed bottom-[5%] right-[3%] z-40 hover:scale-105 transition-transform duration-200">
+            <img src="assets/images/STORMI.png" alt="Stormi" class="w-24 h-24 object-contain" style="image-rendering: pixelated; filter: drop-shadow(4px 4px 0px rgba(0, 0, 0, 0.2));">
+        </div>
+
+        <!-- Ethan Window (Hidden) -->
+        <div id="ethan-window" class="fixed top-[10%] left-[15%] w-[70%] max-w-[600px] bg-[#F7F5FF] pixel-border-pink overflow-hidden flex-col z-50 hidden">
+            <div class="flex items-center justify-between px-4 py-3 bg-[#F4A7B9] border-b-4 border-[#E89FC4] cursor-move" id="ethan-titlebar">
+                <div class="flex items-center gap-2">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="3" y="3" width="2" height="2" fill="#FF6B9D"/>
+                        <rect x="7" y="3" width="2" height="2" fill="#FF6B9D"/>
+                        <rect x="2" y="5" width="10" height="2" fill="#FF6B9D"/>
+                        <rect x="3" y="7" width="8" height="2" fill="#FF6B9D"/>
+                        <rect x="4" y="9" width="6" height="2" fill="#FF6B9D"/>
+                        <rect x="6" y="11" width="2" height="2" fill="#FF6B9D"/>
+                    </svg>
+                    <span class="font-pixel text-sm text-[#1A1A1A]">ethan</span>
+                </div>
+                <button class="ethan-close w-8 h-8 bg-[#E89FC4] hover:bg-[#DC8BB3] pixel-button-small flex items-center justify-center transition-colors p-1">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2" y="2" width="2" height="2" fill="#1A1A1A"/>
+                        <rect x="12" y="2" width="2" height="2" fill="#1A1A1A"/>
+                        <rect x="4" y="4" width="2" height="2" fill="#1A1A1A"/>
+                        <rect x="10" y="4" width="2" height="2" fill="#1A1A1A"/>
+                        <rect x="6" y="6" width="4" height="4" fill="#1A1A1A"/>
+                        <rect x="4" y="10" width="2" height="2" fill="#1A1A1A"/>
+                        <rect x="10" y="10" width="2" height="2" fill="#1A1A1A"/>
+                        <rect x="2" y="12" width="2" height="2" fill="#1A1A1A"/>
+                        <rect x="12" y="12" width="2" height="2" fill="#1A1A1A"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="overflow-y-auto scrollbar-custom p-6 max-h-[70vh]">
+                <div class="bg-white p-4 pixel-border-thin mb-4">
+                    <p class="font-pixel text-xs text-purple-500 mb-2">stats:</p>
+                    <p class="font-mono text-lg text-gray-700 mb-1"><span class="font-bold">met via:</span> facebook. he thought i was cute. i thought the same but it was a secret.</p>
+                    <p class="font-mono text-lg text-gray-700 mb-1"><span class="font-bold">status:</span> together for 6 years. still going. ❤️</p>
+                    <p class="font-mono text-lg text-gray-700"><span class="font-bold">dates:</span> fancy restaurants, casual hangouts, street food. all of it.</p>
+                </div>
+                <div class="bg-white p-4 pixel-border-thin mb-4">
+                    <p class="font-pixel text-xs text-purple-500 mb-3">story:</p>
+                    <p class="font-mono text-lg text-gray-700 leading-relaxed mb-3">
+                        we've had a lot of moments. fancy dates, casual ones, and the kind where we're just standing on the street poking tusok tusok together like we have nowhere else to be. every single one is a favorite.
+                    </p>
+                    <p class="font-mono text-lg text-gray-700 leading-relaxed mb-3">
+                        but if i had to pick one. it was this quiet afternoon at his place. he made me listen to a song. and then he said he wants that song played at our wedding.
+                    </p>
+                    <p class="font-mono text-lg text-gray-700 leading-relaxed mb-3">
+                        and then he cried.
+                    </p>
+                    <p class="font-mono text-lg text-gray-700 leading-relaxed mb-3">
+                        so i cried too.
+                    </p>
+                    <p class="font-mono text-lg text-gray-700 leading-relaxed">
+                        we looked like absolute idiots, crying over a song in his room. but i think that's the moment i knew. he's the one. kasi kung hindi, wag kasi iiyak ako nyan dapat kami end game. ✦
+                    </p>
+                </div>
+                <div class="border-2 border-dashed border-purple-300 p-8 text-center">
+                    <p class="font-mono text-lg text-purple-400">add your photos here 📸</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- My People Window (Hidden) -->
+        <div id="people-window" class="fixed top-[10%] left-[15%] w-[70%] max-w-[600px] bg-[#F7F5FF] pixel-border-lightpink overflow-hidden flex-col z-50 hidden">
+            <div class="flex items-center justify-between px-4 py-3 bg-[#F9C6D8] border-b-4 border-[#FFB7D5] cursor-move" id="people-titlebar">
+                <div class="flex items-center gap-2">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="3" y="3" width="2" height="2" fill="#FFB7D5"/>
+                        <rect x="7" y="3" width="2" height="2" fill="#FFB7D5"/>
+                        <rect x="2" y="5" width="10" height="2" fill="#FFB7D5"/>
+                        <rect x="3" y="7" width="8" height="2" fill="#FFB7D5"/>
+                        <rect x="4" y="9" width="6" height="2" fill="#FFB7D5"/>
+                        <rect x="6" y="11" width="2" height="2" fill="#FFB7D5"/>
+                    </svg>
+                    <span class="font-pixel text-sm text-[#1A1A1A]">my people</span>
+                </div>
+                <button class="people-close w-8 h-8 bg-[#FFB7D5] hover:bg-[#FFA3C7] pixel-button-small flex items-center justify-center transition-colors p-1">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2" y="2" width="2" height="2" fill="#1A1A1A"/>
+                        <rect x="12" y="2" width="2" height="2" fill="#1A1A1A"/>
+                        <rect x="4" y="4" width="2" height="2" fill="#1A1A1A"/>
+                        <rect x="10" y="4" width="2" height="2" fill="#1A1A1A"/>
+                        <rect x="6" y="6" width="4" height="4" fill="#1A1A1A"/>
+                        <rect x="4" y="10" width="2" height="2" fill="#1A1A1A"/>
+                        <rect x="10" y="10" width="2" height="2" fill="#1A1A1A"/>
+                        <rect x="2" y="12" width="2" height="2" fill="#1A1A1A"/>
+                        <rect x="12" y="12" width="2" height="2" fill="#1A1A1A"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="overflow-y-auto scrollbar-custom p-6 max-h-[70vh]">
+                <div class="bg-white p-4 pixel-border-thin mb-4">
+                    <p class="font-pixel text-xs text-purple-500 mb-2">stats:</p>
+                    <p class="font-mono text-lg text-gray-700 mb-1"><span class="font-bold">names:</span> althia and eli. the girls. 🩷</p>
+                    <p class="font-mono text-lg text-gray-700 mb-1"><span class="font-bold">met:</span> online classes. we were the only girls in the circle.</p>
+                    <p class="font-mono text-lg text-gray-700 mb-1"><span class="font-bold">since:</span> 2022. still going strong.</p>
+                    <p class="font-mono text-lg text-gray-700"><span class="font-bold">bond:</span> nagkokopyahan. that's how it started.</p>
+                </div>
+                <div class="bg-white p-4 pixel-border-thin mb-4">
+                    <p class="font-pixel text-xs text-purple-500 mb-3">story:</p>
+                    <p class="font-mono text-lg text-gray-700 leading-relaxed mb-3">
+                        it started because we were the only girls in our online circle and we kept copying each other's work. somehow that turned into a friendship.
+                    </p>
+                    <p class="font-mono text-lg text-gray-700 leading-relaxed mb-3">
+                        every time we're together is my favorite. no specific reason. just them.
+                    </p>
+                    <p class="font-mono text-lg text-gray-700 leading-relaxed">
+                        but if i had to pick one moment — it was our trip to elyu. la union. the beach, the vibes, the whole thing.
+                    </p>
+                    <p class="font-mono text-lg text-gray-700 leading-relaxed">
+                        and yes, we went to a bar. that's all you need to know. 🩷✦
+                    </p>
+                </div>
+                <div class="border-2 border-dashed border-purple-300 p-8 text-center">
+                    <p class="font-mono text-lg text-purple-400">add your photos here 📸</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Family Window (Hidden) -->
+        <div id="family-window" class="fixed top-[10%] left-[15%] w-[70%] max-w-[600px] bg-[#F7F5FF] pixel-border-lavender overflow-hidden flex-col z-50 hidden">
+            <div class="flex items-center justify-between px-4 py-3 bg-[#C4B5F4] border-b-4 border-[#9F7AEA] cursor-move" id="family-titlebar">
+                <div class="flex items-center gap-2">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="3" y="3" width="2" height="2" fill="white"/>
+                        <rect x="7" y="3" width="2" height="2" fill="white"/>
+                        <rect x="2" y="5" width="10" height="2" fill="white"/>
+                        <rect x="3" y="7" width="8" height="2" fill="white"/>
+                        <rect x="4" y="9" width="6" height="2" fill="white"/>
+                        <rect x="6" y="11" width="2" height="2" fill="white"/>
+                    </svg>
+                    <span class="font-pixel text-sm text-white">family</span>
+                </div>
+                <button class="family-close w-8 h-8 bg-[#9F7AEA] hover:bg-[#8B5CF6] pixel-button-small flex items-center justify-center transition-colors p-1">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2" y="2" width="2" height="2" fill="white"/>
+                        <rect x="12" y="2" width="2" height="2" fill="white"/>
+                        <rect x="4" y="4" width="2" height="2" fill="white"/>
+                        <rect x="10" y="4" width="2" height="2" fill="white"/>
+                        <rect x="6" y="6" width="4" height="4" fill="white"/>
+                        <rect x="4" y="10" width="2" height="2" fill="white"/>
+                        <rect x="10" y="10" width="2" height="2" fill="white"/>
+                        <rect x="2" y="12" width="2" height="2" fill="white"/>
+                        <rect x="12" y="12" width="2" height="2" fill="white"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="overflow-y-auto scrollbar-custom p-6 max-h-[70vh]">
+                <p class="font-mono text-sm text-purple-400 mb-4 italic">// easter egg. you found it.</p>
+
+                <div class="bg-white p-4 pixel-border-thin mb-4">
+                    <p class="font-pixel text-xs text-purple-500 mb-3">🤍 family</p>
+
+                    <div class="mb-3">
+                        <p class="font-mono text-base text-gray-800 font-bold mb-1">home</p>
+                        <p class="font-mono text-lg text-gray-700">mama ning, tita peng, chenna, tita len, tito rek, kash</p>
+                    </div>
+
+                    <div class="mb-3">
+                        <p class="font-mono text-base text-gray-800 font-bold mb-1">mama's</p>
+                        <p class="font-mono text-lg text-gray-700">mama, tito baron, nanay, ian, mea, trinna</p>
+                    </div>
+
+                    <div class="mb-3">
+                        <p class="font-mono text-base text-gray-800 font-bold mb-1">papa's</p>
+                        <p class="font-mono text-lg text-gray-700">papa, mami apol, xaun, bimbim</p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-4 pixel-border-thin mb-4">
+                    <p class="font-mono text-lg text-gray-700 leading-relaxed">
+                        my family doesn't look the way most people expect. mama and papa have their own families now, and i love all of them. mami apol, tito baron, my half siblings. every single one. but the people i come home to are mama ning, tita peng, and my sister chenna. i am always, always thankful to mama ning for supporting me and chenna. our studies, our lives, everything in between. she carried so much for us without making us feel the weight of it. and tita peng and tita len — they were always there. no questions, no conditions. just there. the kind of support that doesn't ask for anything in return. and then there's mama's side. papa's side. a whole constellation of people who somehow all make up the person i am today. complicated? maybe. but i wouldn't trade any of them. i don't say it enough. but everything i am, i owe to all of them. everything. ✦
+                    </p>
+                </div>
+
+                <div class="border-2 border-dashed border-purple-300 p-8 text-center">
+                    <p class="font-mono text-lg text-purple-400">add your photos here 📸</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interactive Desktop Elements -->
+        <div class="desktop-element mushroom absolute cursor-grab select-none transition-transform duration-200 z-30 hover:scale-110"
+             data-sound="mushroom"
+             style="top: 2%; left: 2%;">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Pixel Mushroom -->
+                <rect x="18" y="28" width="12" height="16" fill="#E8D5D5"/>
+                <rect x="8" y="16" width="32" height="16" fill="#DC6B7D"/>
+                <rect x="12" y="20" width="6" height="6" fill="#F5E6E8"/>
+                <rect x="30" y="18" width="4" height="4" fill="#F5E6E8"/>
+                <rect x="20" y="26" width="4" height="4" fill="#F5E6E8"/>
+            </svg>
+        </div>
+        <div class="desktop-element star absolute cursor-grab select-none transition-transform duration-200 z-30 hover:scale-110"
+             data-sound="star"
+             style="top: 3%; right: 8%;">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Pixel Star -->
+                <rect x="16" y="4" width="8" height="8" fill="#F9D576"/>
+                <rect x="8" y="12" width="8" height="8" fill="#F9D576"/>
+                <rect x="24" y="12" width="8" height="8" fill="#F9D576"/>
+                <rect x="16" y="12" width="8" height="8" fill="#F9D576"/>
+                <rect x="16" y="20" width="8" height="8" fill="#F9D576"/>
+                <rect x="8" y="20" width="8" height="8" fill="#F9D576"/>
+                <rect x="24" y="20" width="8" height="8" fill="#F9D576"/>
+                <rect x="16" y="28" width="8" height="8" fill="#F9D576"/>
+            </svg>
+        </div>
+        <div class="desktop-element moon absolute cursor-grab select-none transition-transform duration-200 z-30 hover:scale-110"
+             data-sound="moon"
+             style="top: 2%; right: 2%;">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Pixel Moon -->
+                <rect x="8" y="8" width="32" height="32" fill="#B8A4D5"/>
+                <rect x="28" y="8" width="12" height="8" fill="#F7F5FF"/>
+                <rect x="32" y="16" width="8" height="8" fill="#F7F5FF"/>
+                <rect x="36" y="24" width="4" height="8" fill="#F7F5FF"/>
+                <rect x="16" y="16" width="4" height="4" fill="#9B88B8"/>
+                <rect x="24" y="24" width="4" height="4" fill="#9B88B8"/>
+            </svg>
+        </div>
+        <div class="desktop-element cloud absolute cursor-grab select-none transition-transform duration-200 z-30 hover:scale-110"
+             data-sound="cloud"
+             style="top: 50%; left: 1%;">
+            <svg width="64" height="32" viewBox="0 0 64 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Pixel Cloud -->
+                <rect x="16" y="12" width="32" height="16" fill="#E3DFF2"/>
+                <rect x="8" y="16" width="8" height="12" fill="#E3DFF2"/>
+                <rect x="48" y="16" width="8" height="12" fill="#E3DFF2"/>
+                <rect x="24" y="8" width="16" height="8" fill="#E3DFF2"/>
+                <rect x="32" y="4" width="8" height="8" fill="#E3DFF2"/>
+            </svg>
+        </div>
+        <div class="desktop-element butterfly absolute cursor-grab select-none transition-transform duration-200 z-30 hover:scale-110"
+             data-sound="butterfly"
+             style="bottom: 3%; right: 2%;">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Pixel Butterfly -->
+                <rect x="4" y="12" width="12" height="12" fill="#F4B4D0"/>
+                <rect x="32" y="12" width="12" height="12" fill="#F4B4D0"/>
+                <rect x="8" y="28" width="8" height="8" fill="#E89FC4"/>
+                <rect x="32" y="28" width="8" height="8" fill="#E89FC4"/>
+                <rect x="20" y="8" width="8" height="32" fill="#8B5E83"/>
+                <rect x="20" y="4" width="8" height="8" fill="#8B5E83"/>
+                <rect x="10" y="16" width="4" height="4" fill="#FFFFFF"/>
+                <rect x="34" y="16" width="4" height="4" fill="#FFFFFF"/>
+            </svg>
+        </div>
+        <div class="desktop-element sparkle absolute cursor-grab select-none transition-transform duration-200 z-30 hover:scale-110"
+             data-sound="sparkle"
+             style="bottom: 10%; right: 10%;">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Pixel Sparkle -->
+                <rect x="16" y="4" width="8" height="32" fill="#B8D4F1"/>
+                <rect x="4" y="16" width="32" height="8" fill="#B8D4F1"/>
+                <rect x="28" y="8" width="4" height="4" fill="#B8D4F1"/>
+                <rect x="8" y="8" width="4" height="4" fill="#B8D4F1"/>
+                <rect x="28" y="28" width="4" height="4" fill="#B8D4F1"/>
+                <rect x="8" y="28" width="4" height="4" fill="#B8D4F1"/>
+            </svg>
+        </div>
+        <div class="desktop-element star-2 absolute cursor-grab select-none transition-transform duration-200 z-30 hover:scale-110"
+             data-sound="star"
+             style="top: 45%; right: 1%;">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Pixel Star -->
+                <rect x="16" y="4" width="8" height="8" fill="#F9D576"/>
+                <rect x="8" y="12" width="8" height="8" fill="#F9D576"/>
+                <rect x="24" y="12" width="8" height="8" fill="#F9D576"/>
+                <rect x="16" y="12" width="8" height="8" fill="#F9D576"/>
+                <rect x="16" y="20" width="8" height="8" fill="#F9D576"/>
+                <rect x="8" y="20" width="8" height="8" fill="#F9D576"/>
+                <rect x="24" y="20" width="8" height="8" fill="#F9D576"/>
+                <rect x="16" y="28" width="8" height="8" fill="#F9D576"/>
+            </svg>
+        </div>
+        <div class="desktop-element sparkle-2 absolute cursor-grab select-none transition-transform duration-200 z-30 hover:scale-110"
+             data-sound="sparkle"
+             style="bottom: 3%; left: 2%;">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Pixel Sparkle -->
+                <rect x="16" y="4" width="8" height="32" fill="#B8D4F1"/>
+                <rect x="4" y="16" width="32" height="8" fill="#B8D4F1"/>
+                <rect x="28" y="8" width="4" height="4" fill="#B8D4F1"/>
+                <rect x="8" y="8" width="4" height="4" fill="#B8D4F1"/>
+                <rect x="28" y="28" width="4" height="4" fill="#B8D4F1"/>
+                <rect x="8" y="28" width="4" height="4" fill="#B8D4F1"/>
+            </svg>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
