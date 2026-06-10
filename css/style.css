@@ -250,6 +250,38 @@
         height: 60px !important;
     }
 
+    /* Window title bar icons - keep visible on mobile */
+    #ethan-titlebar svg,
+    #people-titlebar svg,
+    #family-titlebar svg,
+    #work-titlebar svg,
+    #links-titlebar svg,
+    #faq-titlebar svg {
+        width: 16px !important;
+        height: 16px !important;
+        flex-shrink: 0;
+    }
+
+    /* Window title text on mobile */
+    #ethan-titlebar .font-pixel,
+    #people-titlebar .font-pixel,
+    #family-titlebar .font-pixel {
+        font-size: 0.75rem !important;
+    }
+
+    /* Window title bar flex container - ensure icons don't disappear */
+    #ethan-titlebar > div:first-child,
+    #people-titlebar > div:first-child,
+    #family-titlebar > div:first-child,
+    #work-titlebar > div:first-child,
+    #links-titlebar > div:first-child,
+    #faq-titlebar > div:first-child {
+        display: flex !important;
+        align-items: center !important;
+        gap: 0.5rem !important;
+        min-width: 0;
+    }
+
     /* Hero section */
     .font-pixel.text-2xl,
     .font-pixel.text-3xl {
