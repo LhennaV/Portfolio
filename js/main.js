@@ -38,6 +38,11 @@ class DesktopElements {
                 src: ['assets/sounds/sparkle.mp3', 'assets/sounds/sparkle.wav'],
                 volume: 0.5,
                 onloaderror: () => console.log('Sparkle sound not found - using placeholder')
+            }),
+            heart: new Howl({
+                src: ['assets/sounds/heart.mp3', 'assets/sounds/heart.wav'],
+                volume: 0.5,
+                onloaderror: () => console.log('Heart sound not found - using placeholder')
             })
         };
 
@@ -435,6 +440,134 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('faq-window').classList.add('flex');
         });
     }
+
+    // Initialize About Window (2nd button - index 1)
+    const aboutBtn = document.querySelectorAll('.nav-btn')[1];
+    new FloatingWindow('about-window', null, 'about-close', 'about-titlebar');
+    if (aboutBtn) {
+        aboutBtn.addEventListener('click', () => {
+            document.getElementById('about-window').classList.remove('hidden');
+            document.getElementById('about-window').classList.add('flex');
+        });
+    }
+
+    // Character Creator Logic
+    let currentCharacter = {
+        hair: 'long',
+        outfit: 'gym',
+        expression: 'blank',
+        accessory: 'none'
+    };
+
+    // Hair buttons
+    document.querySelectorAll('.hair-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            currentCharacter.hair = this.dataset.hair;
+            // Highlight active button with soft RPG style
+            document.querySelectorAll('.hair-btn').forEach(b => {
+                b.classList.remove('bg-[#7C3AED]', 'text-white');
+                b.classList.add('bg-[#F7F5FF]', 'text-[#7C3AED]');
+            });
+            this.classList.remove('bg-[#F7F5FF]', 'text-[#7C3AED]');
+            this.classList.add('bg-[#7C3AED]', 'text-white');
+        });
+    });
+
+    // Outfit buttons
+    document.querySelectorAll('.outfit-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            currentCharacter.outfit = this.dataset.outfit;
+            document.querySelectorAll('.outfit-btn').forEach(b => {
+                b.classList.remove('bg-[#7C3AED]', 'text-white');
+                b.classList.add('bg-[#F7F5FF]', 'text-[#7C3AED]');
+            });
+            this.classList.remove('bg-[#F7F5FF]', 'text-[#7C3AED]');
+            this.classList.add('bg-[#7C3AED]', 'text-white');
+        });
+    });
+
+    // Expression buttons
+    document.querySelectorAll('.expr-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            currentCharacter.expression = this.dataset.expr;
+            document.querySelectorAll('.expr-btn').forEach(b => {
+                b.classList.remove('bg-[#7C3AED]', 'text-white');
+                b.classList.add('bg-[#F7F5FF]', 'text-[#7C3AED]');
+            });
+            this.classList.remove('bg-[#F7F5FF]', 'text-[#7C3AED]');
+            this.classList.add('bg-[#7C3AED]', 'text-white');
+        });
+    });
+
+    // Accessory buttons
+    document.querySelectorAll('.acc-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            currentCharacter.accessory = this.dataset.acc;
+            document.querySelectorAll('.acc-btn').forEach(b => {
+                b.classList.remove('bg-[#7C3AED]', 'text-white');
+                b.classList.add('bg-[#F7F5FF]', 'text-[#7C3AED]');
+            });
+            this.classList.remove('bg-[#F7F5FF]', 'text-[#7C3AED]');
+            this.classList.add('bg-[#7C3AED]', 'text-white');
+        });
+    });
+
+    function updateCharacterPreview() {
+        // Typewriter animation is static now - no need to update
+        console.log('Character updated:', currentCharacter);
+    }
+
+    // RPG Typewriter Animation
+    function typewriterEffect() {
+        const text = 'pixel art in progress...';
+        const element = document.getElementById('typewriter-text');
+        let index = 0;
+
+        function type() {
+            if (index < text.length) {
+                element.textContent = text.substring(0, index + 1);
+                index++;
+                setTimeout(type, 100); // Type one character every 100ms
+            } else {
+                // After typing is complete, wait 2 seconds then restart
+                setTimeout(() => {
+                    element.textContent = '';
+                    index = 0;
+                    setTimeout(type, 500); // Wait half a second before restarting
+                }, 2000);
+            }
+        }
+
+        type();
+    }
+
+    // Initialize with default selection (Soft RPG style)
+    const longHairBtn = document.querySelector('.hair-btn[data-hair="long"]');
+    if (longHairBtn) {
+        longHairBtn.classList.remove('bg-[#F7F5FF]', 'text-[#7C3AED]');
+        longHairBtn.classList.add('bg-[#7C3AED]', 'text-white');
+    }
+
+    const gymBtn = document.querySelector('.outfit-btn[data-outfit="gym"]');
+    if (gymBtn) {
+        gymBtn.classList.remove('bg-[#F7F5FF]', 'text-[#7C3AED]');
+        gymBtn.classList.add('bg-[#7C3AED]', 'text-white');
+    }
+
+    const blankBtn = document.querySelector('.expr-btn[data-expr="blank"]');
+    if (blankBtn) {
+        blankBtn.classList.remove('bg-[#F7F5FF]', 'text-[#7C3AED]');
+        blankBtn.classList.add('bg-[#7C3AED]', 'text-white');
+    }
+
+    const noneBtn = document.querySelector('.acc-btn[data-acc="none"]');
+    if (noneBtn) {
+        noneBtn.classList.remove('bg-[#F7F5FF]', 'text-[#7C3AED]');
+        noneBtn.classList.add('bg-[#7C3AED]', 'text-white');
+    }
+
+    // Start typewriter animation
+    typewriterEffect();
 
     // Easter Egg Hearts - handle click (not drag)
     const hearts = ['heart-red', 'heart-pink', 'heart-light'];

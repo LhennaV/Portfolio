@@ -2,11 +2,12 @@
 
 /* Desktop Elements - custom properties */
 .desktop-element {
-    z-index: 5;
+    z-index: 30;
     image-rendering: pixelated;
     image-rendering: -moz-crisp-edges;
     image-rendering: crisp-edges;
     filter: drop-shadow(3px 3px 0px rgba(0, 0, 0, 0.15));
+    pointer-events: auto;
 }
 
 .desktop-element:hover {
@@ -197,6 +198,17 @@
     z-index: 1000;
     transform: scale(1.05);
     filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.2));
+}
+
+/* Typewriter cursor blink animation */
+@keyframes blink {
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: 0; }
+}
+
+.cursor-blink {
+    animation: blink 1s step-end infinite;
+    color: #7C3AED;
 }
 
 /* Mobile Responsive Styles */
