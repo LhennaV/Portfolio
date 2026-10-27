@@ -132,10 +132,8 @@ function initWorks() {
         showList(filter);
     };
 
-    // The navbar Work button and the intro button always show every project
-    document.querySelectorAll('.nav-btn:first-child, [data-open="work-window"]').forEach(btn => {
-        btn.addEventListener('click', () => showList());
-    });
+    // The navbar Work button always shows every project
+    document.querySelector('.nav-btn:first-child').addEventListener('click', () => showList());
 
     showList();
 

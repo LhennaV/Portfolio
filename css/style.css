@@ -205,6 +205,7 @@
    Lhenna on the left half, the side prop and Stormi on the right half. */
 .stage {
     --px: 6px;
+    --sp: 6px;   /* stage pixel, for positions; --px can be overridden per sprite */
     position: relative;
     width: calc(32 * var(--px));
     height: calc(56 * var(--px));
@@ -212,6 +213,7 @@
 
 .stage.scene-on {
     --px: 5px;
+    --sp: 5px;
     width: calc(64 * var(--px));
 }
 
@@ -264,6 +266,7 @@
 }
 
 #scene-stormi {
+    --px: 3px;   /* smaller than Lhenna (5px) so she reads as a cat next to her */
     --w: 32;
     --h: 32;
     position: absolute;
@@ -337,11 +340,18 @@
 }
 
 /* Interactive Stormi (js/stormi.js): 32x32 frames at 3x, reusing .sprite-strip */
+/* The starting spot and idle animation are set here too (same math as js/stormi.js),
+   so she doesn't jump into place when the page finishes loading */
 #stormi {
     --px: 3px;
     --w: 32;
     --h: 32;
+    --frames: 6;
+    --dur: 1.8s;
     position: fixed;
+    left: calc(97vw - 96px);
+    top: calc(95vh - 96px);
+    background-image: url('../assets/images/sprites/stormi/idle.png');
     z-index: 40;
     cursor: grab;
     touch-action: none;
@@ -368,6 +378,8 @@
 /* Cardboard box: back wall behind Stormi, front wall in front of her */
 .stormi-box-layer {
     position: fixed;
+    left: calc(3vw + 48px);   /* bottom-left corner, same as placeBox() in js/stormi.js */
+    top: calc(95vh - 96px);
     width: 96px;
     height: 96px;
     background: url('../assets/images/sprites/stormi/box.png') no-repeat;

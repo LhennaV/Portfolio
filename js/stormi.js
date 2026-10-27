@@ -29,6 +29,7 @@ function initStormi() {
     let x = 0, y = 0;
     let busyTimer = null;    // ends a reaction (knead / play)
     let wanderTimer = null;
+    let snoreTimer = null;   // repeats her snore while she sleeps
 
     const floorY = () => Math.round(window.innerHeight * 0.95) - SIZE;
     const homeX = () => Math.round(window.innerWidth * 0.97) - SIZE;
@@ -61,7 +62,20 @@ function initStormi() {
         return { x: bx, y: floorY() };
     }
 
+    // Same cartoon snore as Lhenna's pajamas scene, pitched up so it sounds like a small cat
+    function startSnore() {
+        const snore = () => sfx.snore.rate(1.35, sfx.snore.play());
+        snore();
+        snoreTimer = setInterval(snore, 3000);
+    }
+
+    function stopSnore() {
+        clearInterval(snoreTimer);
+        snoreTimer = null;
+    }
+
     function settle() {
+        stopSnore();
         clearTimeout(busyTimer);
         purr.stop();
         show('idle');
@@ -120,6 +134,7 @@ function initStormi() {
         if (!drag.moved && Math.hypot(e.clientX - drag.startX, e.clientY - drag.startY) < 5) return;
         if (!drag.moved) {
             drag.moved = true;
+            stopSnore();
             clearTimeout(busyTimer);
             clearTimeout(wanderTimer);
             purr.stop();
@@ -177,6 +192,7 @@ function initStormi() {
 
     // ─── The preview and the START scenes use the in-scene Stormi, so this one steps out ───
     function goToStage() {
+        stopSnore();
         clearTimeout(busyTimer);
         clearTimeout(wanderTimer);
         purr.stop();
@@ -218,6 +234,8 @@ function initStormi() {
         const me = stormi.getBoundingClientRect();
         if (!inside({ left: me.left - 20, right: me.right + 20, top: me.top - 20, bottom: me.bottom + 20 }, cx, cy)) return;
 
+        stopSnore();
+        purr.stop();
         clearTimeout(busyTimer);
         clearTimeout(wanderTimer);
         if (place === 'box') {
@@ -241,6 +259,7 @@ function initStormi() {
             // curls up on the moon until someone clicks her
             moveSticker(sticker, x + SIZE / 2 - s.width / 2, y + SIZE - s.height * 0.6);
             show('sleep');
+            startSnore();
         }
     });
 

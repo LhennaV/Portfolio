@@ -19,7 +19,7 @@ const sfx = (() => {
         brush: make('brush', 0.3),
         sparkle: make('sparkle', 0.3),
         game: make('game', 0.2),
-        snore: make('snore', 0.3),
+        snore: make('snore', 0.4),
         // stormi
         steps: make('steps', 0.3, { loop: true }),
         meow: make('meow', 0.5),

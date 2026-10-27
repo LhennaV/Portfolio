@@ -36,13 +36,4 @@ document.addEventListener('DOMContentLoaded', () => {
     initStormi();
     initWorks();
     loadSiteImages();
-
-    // Buttons like "view my work" that open a window: <button data-open="work-window">
-    document.querySelectorAll('[data-open]').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const win = document.getElementById(btn.dataset.open);
-            win.classList.remove('hidden');
-            win.classList.add('flex');
-        });
-    });
 });

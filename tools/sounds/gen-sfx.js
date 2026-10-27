@@ -226,12 +226,34 @@ const sfx = {
         [84, 88, 91, 96, 91, 88, 93, 89].forEach((n, i) => tone(b, { start: i * 0.075, dur: 0.07, freq: note(n), type: 'square', vol: 0.22, decay: 6 }));
         return b;
     },
-    // pajamas: soft snore (in through the nose, out with a little "pff")
+    // pajamas: cartoon snore, roblox style: rattly "khhrrrr" in, whistly "fweee-mimimi" out
     snore() {
-        const b = buffer(1.7);
-        noise(b, { dur: 1.0, vol: 0.5, lp: 0.05, attack: 0.5 });
-        tone(b, { dur: 1.0, freq: 70, vol: 0.12, attack: 0.5, decay: 0.5, vib: 0.08, vibRate: 30 });
-        noise(b, { start: 1.05, dur: 0.6, vol: 0.35, lp: 0.2, attack: 0.05 });
+        const b = buffer(1.9);
+        // inhale: buzzy low rattle, pulsing ~28 times a second, pitch creeping up
+        let phase = 0, y = 0;
+        const inDur = 0.95;
+        for (let i = 0; i < Math.floor(inDur * SR); i++) {
+            const t = i / SR, p = t / inDur;
+            const f = 80 + 35 * p;
+            phase += TAU * f / SR;
+            let saw = 0;
+            for (let k = 1; k <= 10; k++) saw += Math.sin(k * phase) / k;
+            y += 0.25 * ((rand() * 2 - 1) - y);
+            const rattle = Math.pow(0.5 + 0.5 * Math.sin(TAU * 28 * t), 3);
+            const env = Math.min(1, t / 0.25) * Math.min(1, (inDur - t) / 0.12);
+            b[i] += (saw * 0.6 + y * 0.8) * rattle * env;
+        }
+        // exhale: whistle that rises then falls, wobbling (the "mimimi")
+        const outStart = 1.05, outDur = 0.75;
+        phase = 0;
+        for (let i = 0; i < Math.floor(outDur * SR); i++) {
+            const t = i / SR, p = t / outDur;
+            const f = (1000 + 600 * Math.sin(Math.PI * Math.min(1, p * 1.4))) * (1 + 0.04 * Math.sin(TAU * 12 * t));
+            phase += TAU * f / SR;
+            const mimimi = 0.55 + 0.45 * Math.sin(TAU * 9 * t);
+            const env = Math.min(1, t / 0.05) * Math.pow(1 - p, 0.7);
+            b[Math.floor(outStart * SR) + i] += Math.sin(phase) * mimimi * env * 0.55;
+        }
         return b;
     },
 

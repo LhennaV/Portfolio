@@ -129,10 +129,10 @@ function initScene() {
         clearStormi();
         setStormi('walk');
         stormi.style.transition = 'none';
-        stormi.style.left = 'calc(64 * var(--px))';
+        stormi.style.left = 'calc(64 * var(--sp))';
         stormi.getBoundingClientRect();           // apply the start position before animating
         stormi.style.transition = '';
-        stormi.style.left = 'calc(31 * var(--px))';
+        stormi.style.left = 'calc(34 * var(--sp))';
         sfx.steps.play();
         stormiLater(() => {
             sfx.steps.stop();
@@ -198,7 +198,7 @@ function initScene() {
         setStormi('sit');
         sfx.meow.play();
         stormi.style.transition = 'none';
-        stormi.style.left = 'calc(31 * var(--px))';
+        stormi.style.left = 'calc(34 * var(--sp))';
         stormiLater(purrLoop, 1500);
     });
 
