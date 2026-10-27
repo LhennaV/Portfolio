@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Final Boss (Friendly)</title>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f6f3ff; --panel: #f8f6ff; --border: #c4b5fd;
+    --accent: #7c3aed; --accent-soft: #a78bfa; --stage: #ede9fe;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 16px; background: var(--bg);
+         font-family: 'Press Start 2P', monospace; color: var(--accent); }
+  .title { background: #9f7aea; border: 4px solid var(--accent); color: #fff;
+           text-align: center; padding: 18px; font-size: 16px;
+           box-shadow: 8px 8px 0 #d8ccf7; margin-bottom: 24px; }
+  .wrap { display: grid; grid-template-columns: 1fr 1.1fr; gap: 20px; }
+  .panel { background: var(--panel); border: 3px solid var(--border); padding: 20px; }
+
+  /* sprite canvas is 32x56 px, shown at 5x = 160x280 */
+  .stage-box { width: 240px; height: 310px; margin: 8px auto 0; background: var(--stage);
+               border: 3px solid var(--border); display: flex; align-items: center; justify-content: center; }
+  .sprite { position: relative; width: 160px; height: 280px; }
+  .sprite img { position: absolute; inset: 0; width: 100%; height: 100%; image-rendering: pixelated; }
+  .name { text-align: center; margin-top: 14px; font-size: 13px; }
+
+  h3 { font-size: 12px; margin: 14px 0 8px; }
+  h3:first-child { margin-top: 0; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  button { font-family: inherit; font-size: 8px; text-transform: uppercase; padding: 14px 6px;
+           background: var(--panel); color: var(--accent); border: 3px solid var(--border); cursor: pointer; }
+  button:hover { border-color: var(--accent-soft); }
+  button.on { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .hint { font-size: 7px; line-height: 1.8; margin-top: 16px; opacity: .7; }
+  @media (max-width: 700px) { .wrap { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<div class="title">⚔ FINAL BOSS (FRIENDLY)</div>
+
+<div class="wrap">
+  <div class="panel">
+    <div class="stage-box">
+      <div class="sprite">
+        <img id="l-hair-back" alt="">
+        <img id="l-base" src="../../assets/images/sprites/lhenna/base.png" alt="">
+        <img id="l-outfit" alt="">
+        <img id="l-expression" alt="">
+        <img id="l-hair-front" alt="">
+        <img id="l-accessory" alt="">
+      </div>
+    </div>
+    <div class="name">LHENNA</div>
+  </div>
+
+  <div class="panel">
+    <h3>&gt; HAIR</h3>
+    <div class="grid" data-cat="hair">
+      <button data-v="long">Long</button>
+      <button data-v="bob">Bob</button>
+      <button data-v="ponytail">Ponytail</button>
+      <button data-v="curly">Curly</button>
+    </div>
+
+    <h3>&gt; OUTFIT</h3>
+    <div class="grid" data-cat="outfit">
+      <button data-v="gym">Gym Set</button>
+      <button data-v="hoodie">Hoodie</button>
+      <button data-v="dress">Dress</button>
+      <button data-v="pajamas">Pajamas</button>
+      <button data-v="casual">Casual</button>
+    </div>
+
+    <h3>&gt; EXPRESSION</h3>
+    <div class="grid" data-cat="expression">
+      <button data-v="blank">Blank</button>
+      <button data-v="happy">Happy</button>
+      <button data-v="sleepy">Sleepy</button>
+      <button data-v="focused">Focused</button>
+    </div>
+
+    <h3>&gt; ACCESSORIES</h3>
+    <div class="grid" data-cat="accessory">
+      <button data-v="">None</button>
+      <button data-v="star">Star Pin</button>
+      <button data-v="headphones">Headphones</button>
+      <button data-v="glasses">Glasses</button>
+    </div>
+
+    <p class="hint">Click a selected option again to take it off. No outfit = sports bra + shorts.</p>
+  </div>
+</div>
+
+<script>
+  // outfit: null shows the base (sports bra + shorts)
+  const state = { hair: 'long', outfit: null, expression: 'blank', accessory: null };
+  const $ = id => document.getElementById(id);
+  const show = (id, src) => {
+    const el = $(id);
+    if (src) { el.src = src; el.style.display = ''; }
+    else { el.removeAttribute('src'); el.style.display = 'none'; }
+  };
+
+  function render() {
+    // stack order: hair-back > base > outfit > expression > hair-front > accessory
+    show('l-hair-back',  state.hair       && `../../assets/images/sprites/lhenna/hair-${state.hair}-back.png`);
+    show('l-outfit',     state.outfit     && `../../assets/images/sprites/lhenna/outfit-${state.outfit}.png`);
+    show('l-expression', state.expression && `../../assets/images/sprites/lhenna/expr-${state.expression}.png`);
+    show('l-hair-front', state.hair       && `../../assets/images/sprites/lhenna/hair-${state.hair}.png`);
+    show('l-accessory',  state.accessory  && `../../assets/images/sprites/lhenna/acc-${state.accessory}.png`);
+    document.querySelectorAll('.grid').forEach(g => {
+      g.querySelectorAll('button').forEach(b => {
+        b.classList.toggle('on', state[g.dataset.cat] === (b.dataset.v || null));
+      });
+    });
+  }
+
+  document.querySelectorAll('.grid').forEach(g => {
+    g.addEventListener('click', e => {
+      const b = e.target.closest('button');
+      if (!b) return;
+      const v = b.dataset.v || null, cat = g.dataset.cat;
+      state[cat] = (state[cat] === v) ? null : v;
+      render();
+    });
+  });
+  render();
+</script>
+</body>
+</html>

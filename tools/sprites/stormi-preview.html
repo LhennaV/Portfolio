@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stormi</title>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<style>
+  :root { --bg:#f6f3ff; --panel:#f8f6ff; --border:#c4b5fd; --accent:#7c3aed; --stage:#ede9fe; }
+  * { box-sizing: border-box; }
+  body { margin:0; padding:16px; background:var(--bg); color:var(--accent);
+         font-family:'Press Start 2P', monospace; }
+  .title { background:#9f7aea; border:4px solid var(--accent); color:#fff; text-align:center;
+           padding:18px; font-size:16px; box-shadow:8px 8px 0 #d8ccf7; margin-bottom:24px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px; }
+  .card { background:var(--panel); border:3px solid var(--border); padding:16px; text-align:center; }
+  .stage { background:var(--stage); border:3px solid var(--border); margin-bottom:12px;
+           display:flex; align-items:center; justify-content:center; padding:12px 0; }
+  .label { font-size:11px; }
+  .meta  { font-size:7px; opacity:.7; margin-top:8px; line-height:1.8; }
+
+  /* One strip = N frames of 32x32 side by side. Steps through them with CSS only. */
+  .anim { --s:5; width:calc(32px * var(--s)); height:calc(32px * var(--s));
+          background-size:calc(32px * var(--n) * var(--s)) 100%;
+          image-rendering:pixelated;
+          animation:play var(--d) steps(var(--n)) infinite; }
+  @keyframes play { to { background-position-x:calc(-32px * var(--n) * var(--s)); } }
+
+  /* layered demos */
+  .rel { --s:5; position:relative; width:calc(32px * var(--s)); height:calc(32px * var(--s)); }
+  .rel > .anim { position:absolute; inset:0; }
+  .star { position:absolute; left:calc(25px * var(--s)); top:0; color:#f59e0b; font-size:24px; line-height:1;
+          animation:twinkle .8s steps(2) infinite; font-family:sans-serif; }
+  @keyframes twinkle { 50% { transform:scale(.7); } }
+  .moon { position:absolute; left:calc(3px * var(--s)); top:calc(29px * var(--s)); width:calc(26px * var(--s));
+          height:calc(3px * var(--s)); background:#fde68a; border:3px solid #7c3aed; border-radius:50%; }
+  .rel.box .layer { position:absolute; inset:0; image-rendering:pixelated; background-size:calc(64px * var(--s)) 100%; }
+  .rel.box .cat { top:calc(3px * var(--s)); background:none; }
+  .rel.box .cat .anim { --s:5; }
+
+  /* walking demo */
+  .walkway { position:relative; height:190px; overflow:hidden; background:var(--stage);
+             border:3px solid var(--border); margin-top:20px; }
+  .walker { position:absolute; bottom:6px; left:0; animation:roam 9s linear infinite; }
+  .walker .anim { animation:play .6s steps(6) infinite; }
+  .walker .flip { animation:flip 9s steps(1) infinite; }
+  @keyframes roam { 0%{left:0} 50%{left:calc(100% - 160px)} 100%{left:0} }
+  @keyframes flip { 0%{transform:scaleX(1)} 50%{transform:scaleX(-1)} 100%{transform:scaleX(1)} }
+</style>
+</head>
+<body>
+
+<div class="title">STORMI</div>
+
+<div class="grid">
+  <div class="card"><div class="stage"><div class="anim" style="--n:6;--d:1.8s;background-image:url(../../assets/images/sprites/stormi/idle.png)"></div></div>
+    <div class="label">IDLE</div><div class="meta">idle.png<br>6 frames</div></div>
+  <div class="card"><div class="stage"><div class="anim" style="--n:6;--d:.6s;background-image:url(../../assets/images/sprites/stormi/walk.png)"></div></div>
+    <div class="label">WALK</div><div class="meta">walk.png<br>6 frames, faces right</div></div>
+  <div class="card"><div class="stage"><div class="anim" style="--n:4;--d:1.4s;background-image:url(../../assets/images/sprites/stormi/sit.png)"></div></div>
+    <div class="label">SIT</div><div class="meta">sit.png<br>4 frames, faces right</div></div>
+  <div class="card"><div class="stage"><div class="anim" style="--n:4;--d:.8s;background-image:url(../../assets/images/sprites/stormi/purr.png)"></div></div>
+    <div class="label">PURR</div><div class="meta">purr.png<br>4 frames</div></div>
+  <div class="card"><div class="stage"><div class="anim" style="--n:4;--d:.9s;background-image:url(../../assets/images/sprites/stormi/knead.png)"></div></div>
+    <div class="label">KNEAD</div><div class="meta">knead.png<br>4 frames, bottom 5px clear for a cloud</div></div>
+  <div class="card"><div class="stage"><div class="rel"><div class="anim" style="--n:4;--d:.8s;background-image:url(../../assets/images/sprites/stormi/play.png)"></div><div class="star">&#9733;</div></div></div>
+    <div class="label">PLAY</div><div class="meta">play.png<br>4 frames, faces right, star at x24-31 y0-8</div></div>
+  <div class="card"><div class="stage"><div class="rel"><div class="moon"></div><div class="anim" style="--n:4;--d:4s;background-image:url(../../assets/images/sprites/stormi/sleep.png)"></div></div></div>
+    <div class="label">SLEEP</div><div class="meta">sleep.png<br>4 frames, body in y18-31</div></div>
+  <div class="card"><div class="stage"><div class="anim" style="--n:2;--d:1.2s;background-image:url(../../assets/images/sprites/stormi/held.png)"></div></div>
+    <div class="label">HELD</div><div class="meta">held.png<br>2 frames, sways 1px</div></div>
+  <div class="card"><div class="stage"><div class="rel box">
+      <div class="layer" style="background-image:url(../../assets/images/sprites/stormi/box.png);background-position-x:0"></div>
+      <div class="layer cat"><div class="anim" style="--n:6;--d:1.8s;background-image:url(../../assets/images/sprites/stormi/idle.png)"></div></div>
+      <div class="layer" style="background-image:url(../../assets/images/sprites/stormi/box.png);background-position-x:calc(-32px * var(--s))"></div></div></div>
+    <div class="label">BOX</div><div class="meta">box.png<br>2 layers: back, front. Stormi sits between</div></div>
+</div>
+
+<div class="walkway">
+  <div class="walker"><div class="flip"><div class="anim" style="--n:6;--d:.6s;background-image:url(../../assets/images/sprites/stormi/walk.png)"></div></div></div>
+</div>
+
+</body>
+</html>

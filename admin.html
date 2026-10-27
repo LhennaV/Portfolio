@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Portfolio Admin</title>
+    <link rel="icon" href="assets/icons/favicon.ico" sizes="any">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        pixel: ['"Press Start 2P"', 'cursive'],
+                        mono: ['VT323', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        [hidden] { display: none !important; }
+        .field { width: 100%; padding: 0.4rem 0.6rem; border: 2px solid #C4B5F4; background: #fff; font-size: 1.15rem; outline: none; }
+        .field:focus { border-color: #9F7AEA; }
+        .label { display: block; font-family: 'Press Start 2P', cursive; font-size: 0.6rem; color: #7C3AED; margin: 1rem 0 0.4rem; }
+        .btn { font-size: 1.1rem; padding: 0.35rem 0.9rem; background: #9F7AEA; color: #fff; }
+        .btn:hover { background: #8B5CF6; }
+        .btn-main { background: #7C3AED; }
+        .btn-main:hover { background: #6D28D9; }
+        .btn-light { background: #fff; color: #7C3AED; }
+        .btn-light:hover { background: #EDE9FE; }
+        .btn-danger { background: #fff; color: #DC2626; }
+        .btn-danger:hover { background: #FEE2E2; }
+        .tab-on { background: #7C3AED; color: #fff; }
+    </style>
+</head>
+<body class="font-mono bg-[#F7F5FF] text-gray-800 min-h-screen">
+    <div class="max-w-4xl mx-auto px-4 py-8">
+        <header class="flex flex-wrap items-center justify-between gap-4 mb-8">
+            <h1 class="font-pixel text-sm md:text-base text-[#7C3AED]">✦ portfolio admin</h1>
+            <div id="session" class="flex items-center gap-3" hidden>
+                <span id="session-email" class="text-lg text-gray-600"></span>
+                <a href="index.html" target="_blank" class="btn btn-light pixel-button">view site ↗</a>
+                <button id="logout" class="btn btn-light pixel-button">log out</button>
+            </div>
+        </header>
+
+        <p id="status" class="text-lg mb-4 min-h-[1.5rem]" role="status"></p>
+
+        <!-- Login -->
+        <section id="login-view" class="max-w-sm mx-auto bg-white p-6 pixel-border-thin" hidden>
+            <h2 class="font-pixel text-xs text-[#7C3AED] mb-4">&gt; LOG IN</h2>
+            <form id="login-form">
+                <label class="label" for="login-email">EMAIL</label>
+                <input id="login-email" type="email" class="field" autocomplete="username" required>
+                <label class="label" for="login-password">PASSWORD</label>
+                <input id="login-password" type="password" class="field" autocomplete="current-password" required>
+                <button class="btn btn-main pixel-button mt-6 w-full">log in</button>
+            </form>
+        </section>
+
+        <!-- Admin -->
+        <section id="admin-view" hidden>
+            <nav class="flex flex-wrap gap-2 mb-6">
+                <button class="tab btn btn-light pixel-button" data-tab="projects">projects</button>
+                <button class="tab btn btn-light pixel-button" data-tab="images">site images</button>
+                <button class="tab btn btn-light pixel-button" data-tab="guestbook">guestbook</button>
+            </nav>
+            <div id="tab-projects" class="tab-panel"></div>
+            <div id="tab-images" class="tab-panel" hidden></div>
+            <div id="tab-guestbook" class="tab-panel" hidden></div>
+        </section>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+    <script src="js/supabase-client.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>

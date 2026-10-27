@@ -200,6 +200,191 @@
     filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.2));
 }
 
+/* Character customizer stage. --px = the size of one sprite pixel.
+   Alone: Lhenna (32x56) at 6x. During a START scene (.scene-on): 64x56 at 5x,
+   Lhenna on the left half, the side prop and Stormi on the right half. */
+.stage {
+    --px: 6px;
+    position: relative;
+    width: calc(32 * var(--px));
+    height: calc(56 * var(--px));
+}
+
+.stage.scene-on {
+    --px: 5px;
+    width: calc(64 * var(--px));
+}
+
+.stage [hidden] {
+    display: none !important;
+}
+
+.character-sprite {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: calc(32 * var(--px));
+    height: calc(56 * var(--px));
+}
+
+.character-sprite img,
+.character-sprite .sprite-strip {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    image-rendering: pixelated;
+}
+
+/* A horizontal strip of frames; --frames, --w, --h (in sprite pixels) and --dur are set per use */
+.sprite-strip {
+    --frames: 1;
+    --w: 32;
+    --h: 56;
+    width: calc(var(--w) * var(--px));
+    height: calc(var(--h) * var(--px));
+    background-repeat: no-repeat;
+    background-size: calc(var(--frames) * var(--w) * var(--px)) calc(var(--h) * var(--px));
+    image-rendering: pixelated;
+}
+
+.sprite-strip.playing {
+    animation: sprite-strip var(--dur, 1s) steps(var(--frames)) infinite;
+}
+
+@keyframes sprite-strip {
+    from { background-position: 0 0; }
+    to { background-position: calc(var(--frames) * var(--w) * var(--px) * -1) 0; }
+}
+
+#scene-side {
+    position: absolute;
+    left: calc(32 * var(--px));
+    bottom: 0;
+}
+
+#scene-stormi {
+    --w: 32;
+    --h: 32;
+    position: absolute;
+    bottom: 0;
+    transition: left 2.4s linear;
+}
+
+#scene-stormi {
+    cursor: pointer;   /* click to send her back to her corner */
+}
+
+#scene-stormi.face-left {
+    transform: scaleX(-1);
+}
+
+/* Floating fx icons (8x8 each in fx.png: sweat, note, sparkle, heart, z, code) */
+#scene-fx {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.scene-fx-icon {
+    position: absolute;
+    width: calc(8 * var(--px));
+    height: calc(8 * var(--px));
+    background: url('../assets/images/sprites/props/fx.png') no-repeat;
+    background-size: calc(48 * var(--px)) calc(8 * var(--px));
+    image-rendering: pixelated;
+    animation: scene-fx-float 1.6s ease-out forwards;
+}
+
+@keyframes scene-fx-float {
+    0% { opacity: 0; transform: translateY(0); }
+    15% { opacity: 1; }
+    100% { opacity: 0; transform: translateY(calc(-14 * var(--px))); }
+}
+
+/* Lhenna moves in whole sprite pixels so she stays crisp */
+.character-sprite.move-squat { animation: move-squat 1.2s step-end infinite; }
+.character-sprite.move-bob { animation: move-bob 0.5s step-end infinite; }
+.character-sprite.move-sway { animation: move-sway 2.4s step-end infinite; }
+
+@keyframes move-squat {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(calc(3 * var(--px))); }
+}
+
+@keyframes move-bob {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(var(--px)); }
+}
+
+@keyframes move-sway {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(var(--px)); }
+    50% { transform: translateX(0); }
+    75% { transform: translateX(calc(-1 * var(--px))); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .character-sprite, .sprite-strip.playing, #scene-stormi { animation: none !important; transition: none !important; }
+}
+
+/* Navbar Stormi: still image, its art is 23x30 pixels (scaled 12x in the file) */
+.stormi-logo {
+    width: 23px;
+    height: 30px;
+    image-rendering: pixelated;
+    cursor: pointer;
+}
+
+/* Interactive Stormi (js/stormi.js): 32x32 frames at 3x, reusing .sprite-strip */
+#stormi {
+    --px: 3px;
+    --w: 32;
+    --h: 32;
+    position: fixed;
+    z-index: 40;
+    cursor: grab;
+    touch-action: none;
+    filter: drop-shadow(4px 4px 0 rgba(0, 0, 0, 0.2));
+}
+
+#stormi.dragging {
+    cursor: grabbing;
+    z-index: 60;
+}
+
+#stormi.falling {
+    transition: top 0.35s ease-in;
+}
+
+#stormi.walking {
+    transition: left var(--walk-time, 2s) linear;
+}
+
+#stormi.face-left {
+    transform: scaleX(-1);
+}
+
+/* Cardboard box: back wall behind Stormi, front wall in front of her */
+.stormi-box-layer {
+    position: fixed;
+    width: 96px;
+    height: 96px;
+    background: url('../assets/images/sprites/stormi/box.png') no-repeat;
+    background-size: 192px 96px;
+    image-rendering: pixelated;
+}
+
+#stormi-box-back {
+    z-index: 39;
+}
+
+#stormi-box-front {
+    z-index: 41;
+    background-position: -96px 0;
+    pointer-events: none;
+}
+
 /* Typewriter cursor blink animation */
 @keyframes blink {
     0%, 49% { opacity: 1; }
@@ -257,9 +442,9 @@
     }
 
     /* STORMI logo in navbar */
-    nav img {
-        width: 60px !important;
-        height: 60px !important;
+    .stormi-logo {
+        width: 46px;
+        height: 60px;
     }
 
     /* Window title bar icons - keep visible on mobile */
@@ -327,6 +512,7 @@
     }
 
     /* Floating windows */
+    #about-window,
     #work-window,
     #links-window,
     #faq-window,
@@ -361,8 +547,8 @@
         grid-template-columns: 1fr !important;
     }
 
-    /* Social links in Links window */
-    .grid.grid-cols-2 {
+    /* Social links in Contact window */
+    #links-window .grid.grid-cols-2 {
         grid-template-columns: 1fr !important;
     }
 
